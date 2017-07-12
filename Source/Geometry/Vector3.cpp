@@ -25,14 +25,27 @@
 #include <Geometry/Vector3.hpp>
 #include <cmath>
 
-namespace Mesh
+namespace Geometry
 {
+    /**
+     * Class constructor.
+     *
+     * @param x - X component.
+     * @param y - Y component.
+     * @param z - Z component.
+     */
+    Vector3::Vector3(float x = 0.0f, float y = 0.0f, float z = 0.0f) :
+            X{ x },
+            Y{ y },
+            Z{ z }
+    {}
+
     /**
      * The addition assignment operator.
      *
      * @param v - Vector3 to be added.
      *
-     * @return - Returns itself for operator chaining.
+     * @return Returns itself(Vector3) for operator chaining.
      */
     Vector3& Vector3::operator+=(const Vector3& v)
     {
@@ -47,7 +60,7 @@ namespace Mesh
      *
      * @param v - Vector3 to be subtracted.
      *
-     * @return - Returns itself for operator chaining.
+     * @return Returns itself(Vector3) for operator chaining.
      */
     Vector3& Vector3::operator-=(const Vector3& v)
     {
@@ -62,7 +75,7 @@ namespace Mesh
      *
      * @param v - Vector3 to be added.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     const Vector3 Vector3::operator+(const Vector3& v) const
     {
@@ -74,7 +87,7 @@ namespace Mesh
      *
      * @param v - Vector3 to be subtracted.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     const Vector3 Vector3::operator-(const Vector3& v) const
     {
@@ -87,7 +100,7 @@ namespace Mesh
      * @param v - Vector3 to be multiplied.
      * @param n - Multiplication factor.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     Vector3 operator*(const Vector3& v, const float n)
     {
@@ -100,7 +113,7 @@ namespace Mesh
      * @param n - Multiplication factor.
      * @param v - Vector3 to be multiplied.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     Vector3 operator*(const float n, const Vector3& v)
     {
@@ -113,7 +126,7 @@ namespace Mesh
      * @param v - Vector3 to be divided.
      * @param n - Division factor.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     Vector3 operator/(const Vector3& v, const float n)
     {
@@ -126,7 +139,7 @@ namespace Mesh
      * @param n - Division factor.
      * @param v - Vector3 to be divided.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     Vector3 operator/(const float n, const Vector3& v)
     {
@@ -138,7 +151,7 @@ namespace Mesh
      *
      * @param v - Vector with which to do cross operation.
      *
-     * @return - Returns resulting vector.
+     * @return Returns resulting Vector3.
      */
     const Vector3 Vector3::Cross(const Vector3& v) const
     {
@@ -154,7 +167,7 @@ namespace Mesh
      *
      * @param v - Vector with which to do dot operation.
      *
-     * @return - Returns resulting scalar.
+     * @return Returns resulting float.
      */
     const float Vector3::Dot(const Vector3& v) const
     {
@@ -166,7 +179,7 @@ namespace Mesh
      *
      * @param v - The other vector.
      *
-     * @return Angle between vectors in radians.
+     * @return Angle between Vector3's in radians.
      */
     const float Vector3::Angle(const Vector3& v) const
     {
@@ -176,7 +189,7 @@ namespace Mesh
     /**
      * Gets length of the vector.
      *
-     * @return Length of the vector.
+     * @return Length of the Vector3.
      */
     const float Vector3::Length(void) const
     {
@@ -192,7 +205,7 @@ namespace Mesh
      *
      * @param v - The other vector.
      *
-     * @return Distance between vectors.
+     * @return Distance between Vector3's.
      */
     const float Vector3::Distance(const Vector3& v) const
     {
@@ -202,7 +215,7 @@ namespace Mesh
     /**
      * Returns normalized vector.
      *
-     * @return Normalized vector.
+     * @return Normalized Vector3.
      */
     const Vector3 Vector3::Normal(void) const
     {

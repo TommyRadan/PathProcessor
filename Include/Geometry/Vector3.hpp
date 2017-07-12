@@ -24,8 +24,13 @@
 
 #pragma once
 
-namespace Mesh
+namespace Geometry
 {
+    /**
+     * This class holds one three-dimensional vector and provides basic
+     * operations such as adding, subtracting, multiplication, division,
+     * cross and dot.
+     */
     struct Vector3
     {
         Vector3(float x = 0.0f, float y = 0.0f, float z = 0.0f) : X( x ), Y( y ), Z( z ) {}
@@ -47,7 +52,6 @@ namespace Mesh
         const float Dot(const Vector3& v) const;
         const float Angle(const Vector3& v) const;
 
-        const float LengthSqr(void) const;
         const float Length(void) const;
         const float Distance(const Vector3& v) const;
 
