@@ -33,7 +33,7 @@ namespace Geometry
      */
     struct Vector3
     {
-        Vector3(float x = 0.0f, float y = 0.0f, float z = 0.0f) : X( x ), Y( y ), Z( z ) {}
+		Vector3(const float x, const float y, const float z);
 
         Vector3& operator+=(const Vector3& v);
         Vector3& operator-=(const Vector3& v);

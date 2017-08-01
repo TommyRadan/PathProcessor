@@ -34,7 +34,7 @@ namespace Geometry
      * @param y - Y component.
      * @param z - Z component.
      */
-    Vector3::Vector3(float x = 0.0f, float y = 0.0f, float z = 0.0f) :
+    Vector3::Vector3(const float x = 0.0f, const float y = 0.0f, const float z = 0.0f) :
             X{ x },
             Y{ y },
             Z{ z }

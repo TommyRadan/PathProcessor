@@ -29,7 +29,7 @@
  *
  * @return Returns pointer to system-wide unique Settings pointer.
  */
-static Settings* Settings::GetInstance(void)
+Settings* Settings::GetInstance(void)
 {
     static Settings* instance = nullptr;
     if (instance == nullptr) {
