@@ -24,6 +24,8 @@
 
 #include <Controller/Settings.hpp>
 
+static Settings* settingsInstance = nullptr;
+
 /**
  * Singleton GetInstance method for Settings class.
  *
@@ -31,11 +33,23 @@
  */
 Settings* Settings::GetInstance(void)
 {
-    static Settings* instance = nullptr;
-    if (instance == nullptr) {
-        instance = new Settings();
+    if (settingsInstance == nullptr)
+    {
+        settingsInstance = new Settings();
     }
-    return instance;
+    return settingsInstance;
+}
+
+/**
+ * Singleton ReleaseInstance method for releasing the Settings class.
+ */
+void Settings::ReleaseInstance(void)
+{
+    if (settingsInstance != nullptr)
+    {
+        delete settingsInstance;
+        settingsInstance = nullptr;
+    }
 }
 
 /**

@@ -24,12 +24,20 @@
 
 #pragma once
 
+/**
+ * This global settings class is used for centralized settings managing.
+ * Every application setting should be introduced here.
+ */
 class Settings
 {
     static Settings* GetInstance(void);
+    static void ReleaseInstance(void);
+    Settings(void);
 
 public:
-    Settings(void);
+    /*
+     * TODO: Add settings getters and setters.
+     */
 
 private:
     /*
