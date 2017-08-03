@@ -11,11 +11,13 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(Include/)
 
 set(SOURCE_FILES
-        Source/Controller/main.cpp
         Source/Controller/Settings.cpp
-        Source/Geometry/Point.cpp)
+        Source/Geometry/Point.cpp
+        Source/Geometry/VerticalLine.cpp)
 
-add_executable(PathProcessing ${SOURCE_FILES})
+add_executable(PathProcessing
+        Source/Controller/main.cpp
+        ${SOURCE_FILES})
 
 ###################################################################
 # Application Tests
@@ -35,7 +37,8 @@ ExternalProject_Get_Property(gtest
 
 add_executable(UnitTest
         Test/PointTest.cpp
-        Source/Geometry/Point.cpp)
+        Test/VerticalLineTest.cpp
+        ${SOURCE_FILES})
 
 add_dependencies(UnitTest gtest)
 include_directories(${source_dir}/googletest/include)
