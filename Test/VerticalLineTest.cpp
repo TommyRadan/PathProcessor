@@ -39,3 +39,25 @@ TEST(VerticalLine, Construction)
     ASSERT_FLOAT_EQ(pointLine.GetX(), 3.0f);
     ASSERT_FLOAT_EQ(pointLine.GetY(), 2.0f);
 }
+
+TEST(VerticalLine, Distance)
+{
+    Geometry::VerticalLine line(1.0f, 1.0f);
+    Geometry::Point point(1.0f, 2.0f, 7.0f);
+
+    ASSERT_FLOAT_EQ(line.GetDistance(point), 1.0f);
+    point.Z = -2.0f;
+    ASSERT_FLOAT_EQ(line.GetDistance(point), 1.0f);
+    point.Z = 0.0f;
+    ASSERT_FLOAT_EQ(line.GetDistance(point), 1.0f);
+
+    point.X = 1.0f;
+    point.Y = 1.0f;
+    point.Z = 7.0f;
+
+    ASSERT_FLOAT_EQ(line.GetDistance(point), 0.0f);
+    point.Z = -2.0f;
+    ASSERT_FLOAT_EQ(line.GetDistance(point), 0.0f);
+    point.Z = 0.0f;
+    ASSERT_FLOAT_EQ(line.GetDistance(point), 0.0f);
+}

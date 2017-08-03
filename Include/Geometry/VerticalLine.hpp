@@ -39,6 +39,8 @@ namespace Geometry
         const float GetX(void) const;
         const float GetY(void) const;
 
+        const float GetDistance(const Point& p) const;
+
     private:
         float m_X;
         float m_Y;

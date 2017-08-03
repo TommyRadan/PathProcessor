@@ -66,4 +66,17 @@ namespace Geometry
     {
         return m_Y;
     }
+
+    /**
+     * Gets distance from VerticalLine to Point.
+     *
+     * @param p - The Point.
+     *
+     * @return Returns float which represents distance.
+     */
+    const float VerticalLine::GetDistance(const Point& p) const
+    {
+        const Geometry::Point referentPoint(this->GetX(), this->GetY(), p.Z);
+        return referentPoint.Distance(p);
+    }
 }
