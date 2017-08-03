@@ -22,42 +22,37 @@
  *
  */
 
-#pragma once
+#include <Geometry/Point.hpp>
+#include <cmath>
 
 namespace Geometry
 {
     /**
-     * This class holds one three-dimensional vector and provides basic
-     * operations such as adding, subtracting, multiplication, division,
-     * cross and dot.
+     * Class constructor.
+     *
+     * @param x - X component.
+     * @param y - Y component.
+     * @param z - Z component.
      */
-    struct Vector3
+    Point::Point(const float x, const float y, const float z) :
+            X{ x },
+            Y{ y },
+            Z{ z }
+    {}
+
+    /**
+     * Gets distance between two Points.
+     *
+     * @param p - The other Point.
+     *
+     * @return Distance between Points.
+     */
+    const float Point::Distance(const Point& p) const
     {
-		Vector3(const float x, const float y, const float z);
+        const float dx = this->X - p.X;
+        const float dy = this->Y - p.Y;
+        const float dz = this->Z - p.Z;
 
-        Vector3& operator+=(const Vector3& v);
-        Vector3& operator-=(const Vector3& v);
-
-        const Vector3 operator+(const Vector3& v) const;
-        const Vector3 operator-(const Vector3& v) const;
-
-        friend Vector3 operator*(const Vector3& v, const float n);
-        friend Vector3 operator*(const float n, const Vector3& v);
-
-        friend Vector3 operator/(const Vector3& v, const float n);
-        friend Vector3 operator/(const float n, const Vector3& v);
-
-        const Vector3 Cross(const Vector3& v) const;
-
-        const float Dot(const Vector3& v) const;
-        const float Angle(const Vector3& v) const;
-
-        const float Length(void) const;
-        const float Distance(const Vector3& v) const;
-
-        const Vector3 Normal(void) const;
-
-        // Data
-        float X, Y, Z;
-    };
+        return sqrtf(dx * dx + dy * dy + dz * dz);
+    }
 }
