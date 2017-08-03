@@ -34,42 +34,51 @@ TEST(Point, Construction)
 {
     // Test main constructor
     Geometry::Point a(5.0f, 4.0f, 1.0f);
-    ASSERT_NEAR(a.X, 5.0f, 0.0001f);
-    ASSERT_NEAR(a.Y, 4.0f, 0.0001f);
-    ASSERT_NEAR(a.Z, 1.0f, 0.0001f);
+    ASSERT_FLOAT_EQ(a.X, 5.0f);
+    ASSERT_FLOAT_EQ(a.Y, 4.0f);
+    ASSERT_FLOAT_EQ(a.Z, 1.0f);
 
     // Test compound literal construction
     Geometry::Point b = {2.0f, 7.0f, 3.0f};
-    ASSERT_NEAR(b.X, 2.0f, 0.0001f);
-    ASSERT_NEAR(b.Y, 7.0f, 0.0001f);
-    ASSERT_NEAR(b.Z, 3.0f, 0.0001f);
+    ASSERT_FLOAT_EQ(b.X, 2.0f);
+    ASSERT_FLOAT_EQ(b.Y, 7.0f);
+    ASSERT_FLOAT_EQ(b.Z, 3.0f);
 
     // Test assignment operator
     Geometry::Point c = a;
-    ASSERT_NEAR(c.X, 5.0f, 0.0001f);
-    ASSERT_NEAR(c.Y, 4.0f, 0.0001f);
-    ASSERT_NEAR(c.Z, 1.0f, 0.0001f);
+    ASSERT_FLOAT_EQ(c.X, 5.0f);
+    ASSERT_FLOAT_EQ(c.Y, 4.0f);
+    ASSERT_FLOAT_EQ(c.Z, 1.0f);
 
     // Test copy constructor
     Geometry::Point d(a);
-    ASSERT_NEAR(d.X, 5.0f, 0.0001f);
-    ASSERT_NEAR(d.Y, 4.0f, 0.0001f);
-    ASSERT_NEAR(d.Z, 1.0f, 0.0001f);
+    ASSERT_FLOAT_EQ(d.X, 5.0f);
+    ASSERT_FLOAT_EQ(d.Y, 4.0f);
+    ASSERT_FLOAT_EQ(d.Z, 1.0f);
+}
 
-    // Test independence
-    c.X = 7.0f;
-    c.Y = 3.0f;
-    c.Z = 4.0f;
+/**
+ * This test case tests Point memory independence.
+ */
+TEST(Point, Independence)
+{
+    Geometry::Point a(0.0f, 4.0f, 7.0f);
+    Geometry::Point b(5.0f, 0.0f, 2.0f);
 
-    ASSERT_NEAR(a.X, 5.0f, 0.0001f);
-    ASSERT_NEAR(a.Y, 4.0f, 0.0001f);
-    ASSERT_NEAR(a.Z, 1.0f, 0.0001f);
-    ASSERT_NEAR(b.X, 2.0f, 0.0001f);
-    ASSERT_NEAR(b.Y, 7.0f, 0.0001f);
-    ASSERT_NEAR(b.Z, 3.0f, 0.0001f);
-    ASSERT_NEAR(d.X, 5.0f, 0.0001f);
-    ASSERT_NEAR(d.Y, 4.0f, 0.0001f);
-    ASSERT_NEAR(d.Z, 1.0f, 0.0001f);
+    ASSERT_FLOAT_EQ(a.X, 0.0f);
+    ASSERT_FLOAT_EQ(a.Y, 4.0f);
+    ASSERT_FLOAT_EQ(a.Z, 7.0f);
+
+    a.X = 3.0f;
+    a.Y = 2.0f;
+    a.Z = 5.0f;
+
+    ASSERT_FLOAT_EQ(a.X, 3.0f);
+    ASSERT_FLOAT_EQ(a.Y, 2.0f);
+    ASSERT_FLOAT_EQ(a.Z, 5.0f);
+    ASSERT_FLOAT_EQ(b.X, 5.0f);
+    ASSERT_FLOAT_EQ(b.Y, 0.0f);
+    ASSERT_FLOAT_EQ(b.Z, 2.0f);
 }
 
 /**
@@ -81,40 +90,24 @@ TEST(Point, Distance)
     Geometry::Point b(5.0f, 0.0f, 0.0f);
 
     // Basic Test
-    ASSERT_NEAR(a.Distance(b), 5.0f, 0.0001f);
-
-    // Test distance reflection
-    ASSERT_EQ(a.Distance(b), b.Distance(a));
+    ASSERT_FLOAT_EQ(a.Distance(b), 5.0f);
+    ASSERT_FLOAT_EQ(a.Distance(b), b.Distance(a));
+    ASSERT_FLOAT_EQ(a.Distance(a), 0.0f);
+    ASSERT_FLOAT_EQ(b.Distance(b), 0.0f);
 
     // Test distance to center from every angle of the sphere
-    for (float angleZ = 0.0f; angleZ < 2 * M_PI; angleZ += 0.01f)
-    {
-        for (float angleY = 0.0f; angleY < 2 * M_PI; angleY += 0.01f)
-        {
-            b.X = sinf(angleY) * cosf(angleZ);
-            b.Y = sinf(angleY) * sinf(angleZ);
-            b.Z = cosf(angleY);
-
-            ASSERT_NEAR(b.Distance(a), 1.0f, 0.0001f);
-        }
-    }
-
-    // Just like above, only this time it's testing distance to non-center coordinate
-    // And also distance is variable
-    a.X = 74.5f;
-    a.Y = -4.3f;
-    a.Z = 15.2f;
     for (float angleZ = 0.0f; angleZ < 2 * M_PI; angleZ += 0.1f)
     {
         for (float angleY = 0.0f; angleY < 2 * M_PI; angleY += 0.1f)
         {
             for (float distance = 0.2f; distance < 2.2f; distance += 0.2f)
             {
-                b.X = distance * sinf(angleY) * cosf(angleZ) + 74.5f;
-                b.Y = distance * sinf(angleY) * sinf(angleZ) - 4.3f;
-                b.Z = distance * cosf(angleY) + 15.2f;
+                b.X = distance * sinf(angleY) * cosf(angleZ);
+                b.Y = distance * sinf(angleY) * sinf(angleZ);
+                b.Z = distance * cosf(angleY);
 
-                ASSERT_NEAR(b.Distance(a), distance, 0.0001f);
+                ASSERT_FLOAT_EQ(b.Distance(a), distance);
+                ASSERT_FLOAT_EQ(a.Distance(b), distance);
             }
         }
     }
