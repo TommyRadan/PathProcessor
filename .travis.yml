@@ -1,0 +1,14 @@
+os:
+  - linux
+  - osx
+language: cpp
+compiler:
+  - gcc
+  - clang
+script:
+  - cmake .
+  - make
+  - ./UnitTest
+notifications:
+  email: false
+sudo: false

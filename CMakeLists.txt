@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.7)
+cmake_minimum_required(VERSION 3.2)
 
 ###################################################################
 # Application Main Build
@@ -42,10 +42,12 @@ add_executable(UnitTest
         Test/TriangleTest.cpp
         ${SOURCE_FILES})
 
+find_package (Threads)
 add_dependencies(UnitTest gtest)
 include_directories(${source_dir}/googletest/include)
 target_link_libraries(UnitTest ${binary_dir}/googlemock/gtest/libgtest.a)
 target_link_libraries(UnitTest ${binary_dir}/googlemock/gtest/libgtest_main.a)
+target_link_libraries(UnitTest ${CMAKE_THREAD_LIBS_INIT})
 
 enable_testing()
 add_test(NAME UnitTest
