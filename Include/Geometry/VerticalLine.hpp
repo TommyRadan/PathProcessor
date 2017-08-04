@@ -34,7 +34,7 @@ namespace Geometry
     struct VerticalLine
     {
         VerticalLine(const float x, const float y);
-        VerticalLine(const Point& p);
+        explicit VerticalLine(const Point& p);
 
         const float GetX(void) const;
         const float GetY(void) const;
