@@ -40,6 +40,7 @@ add_executable(UnitTest
         Test/PointTest.cpp
         Test/VerticalLineTest.cpp
         Test/TriangleTest.cpp
+        Test/SettingsTest.cpp
         ${SOURCE_FILES})
 
 find_package (Threads)

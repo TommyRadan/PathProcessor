@@ -22,26 +22,22 @@
  *
  */
 
-#pragma once
+#include <gtest/gtest.h>
 
-/**
- * This global settings class is used for centralized settings managing.
- * Every application setting should be introduced here.
- */
-class Settings
+#include <Controller/Settings.hpp>
+
+TEST(Settings, Construction)
 {
-    Settings(void);
+    Settings* settings = Settings::GetInstance();
 
-public:
-    static Settings* GetInstance(void);
-    static void ReleaseInstance(void);
+    // Make sure you don't get nullptr
+    ASSERT_NE(settings, nullptr);
 
-    /*
-     * TODO: Add settings getters and setters.
-     */
+    // Check the stability of singleton creation
+    ASSERT_EQ(settings, Settings::GetInstance());
+    ASSERT_EQ(settings, Settings::GetInstance());
+    ASSERT_EQ(settings, Settings::GetInstance());
+    ASSERT_EQ(settings, Settings::GetInstance());
 
-private:
-    /*
-     * TODO: Add application settings.
-     */
-};
+    Settings::ReleaseInstance();
+}
