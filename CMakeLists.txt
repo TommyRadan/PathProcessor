@@ -13,7 +13,8 @@ include_directories(Include/)
 set(SOURCE_FILES
         Source/Controller/Settings.cpp
         Source/Geometry/Point.cpp
-        Source/Geometry/VerticalLine.cpp)
+        Source/Geometry/VerticalLine.cpp
+        Source/Geometry/Triangle.cpp)
 
 add_executable(PathProcessing
         Source/Controller/main.cpp
@@ -38,6 +39,7 @@ ExternalProject_Get_Property(gtest
 add_executable(UnitTest
         Test/PointTest.cpp
         Test/VerticalLineTest.cpp
+        Test/TriangleTest.cpp
         ${SOURCE_FILES})
 
 add_dependencies(UnitTest gtest)

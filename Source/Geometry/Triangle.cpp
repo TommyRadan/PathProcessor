@@ -22,8 +22,7 @@
  *
  */
 
-#include <Geometry/Point.hpp>
-#include <Geometry/VerticalLine.hpp>
+#include <Geometry/Triangle.hpp>
 
 namespace Geometry
 {
