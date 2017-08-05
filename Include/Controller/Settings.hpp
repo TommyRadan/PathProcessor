@@ -31,6 +31,9 @@
 class Settings
 {
     Settings(void);
+    Settings(Settings&) = delete;
+    Settings& operator=(Settings&) = delete;
+    ~Settings(void) = default;
 
 public:
     static Settings* GetInstance(void);
