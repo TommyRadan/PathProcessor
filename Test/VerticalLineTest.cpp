@@ -46,18 +46,18 @@ TEST(VerticalLine, Distance)
     Geometry::Point point(1.0f, 2.0f, 7.0f);
 
     ASSERT_FLOAT_EQ(line.GetDistance(point), 1.0f);
-    point.Z = -2.0f;
+    point.SetZ(-2.0f);
     ASSERT_FLOAT_EQ(line.GetDistance(point), 1.0f);
-    point.Z = 0.0f;
+    point.SetZ(0.0f);
     ASSERT_FLOAT_EQ(line.GetDistance(point), 1.0f);
 
-    point.X = 1.0f;
-    point.Y = 1.0f;
-    point.Z = 7.0f;
+    point.SetX(1.0f);
+    point.SetY(1.0f);
+    point.SetZ(7.0f);
 
     ASSERT_FLOAT_EQ(line.GetDistance(point), 0.0f);
-    point.Z = -2.0f;
+    point.SetZ(-2.0f);
     ASSERT_FLOAT_EQ(line.GetDistance(point), 0.0f);
-    point.Z = 0.0f;
+    point.SetZ(0.0f);
     ASSERT_FLOAT_EQ(line.GetDistance(point), 0.0f);
 }

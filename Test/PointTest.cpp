@@ -34,27 +34,27 @@ TEST(Point, Construction)
 {
     // Test main constructor
     Geometry::Point a(5.0f, 4.0f, 1.0f);
-    ASSERT_FLOAT_EQ(a.X, 5.0f);
-    ASSERT_FLOAT_EQ(a.Y, 4.0f);
-    ASSERT_FLOAT_EQ(a.Z, 1.0f);
+    ASSERT_FLOAT_EQ(a.GetX(), 5.0f);
+    ASSERT_FLOAT_EQ(a.GetY(), 4.0f);
+    ASSERT_FLOAT_EQ(a.GetZ(), 1.0f);
 
     // Test compound literal construction
     Geometry::Point b = {2.0f, 7.0f, 3.0f};
-    ASSERT_FLOAT_EQ(b.X, 2.0f);
-    ASSERT_FLOAT_EQ(b.Y, 7.0f);
-    ASSERT_FLOAT_EQ(b.Z, 3.0f);
+    ASSERT_FLOAT_EQ(b.GetX(), 2.0f);
+    ASSERT_FLOAT_EQ(b.GetY(), 7.0f);
+    ASSERT_FLOAT_EQ(b.GetZ(), 3.0f);
 
     // Test assignment operator
     Geometry::Point c = a;
-    ASSERT_FLOAT_EQ(c.X, 5.0f);
-    ASSERT_FLOAT_EQ(c.Y, 4.0f);
-    ASSERT_FLOAT_EQ(c.Z, 1.0f);
+    ASSERT_FLOAT_EQ(c.GetX(), 5.0f);
+    ASSERT_FLOAT_EQ(c.GetY(), 4.0f);
+    ASSERT_FLOAT_EQ(c.GetZ(), 1.0f);
 
     // Test copy constructor
     Geometry::Point d(a);
-    ASSERT_FLOAT_EQ(d.X, 5.0f);
-    ASSERT_FLOAT_EQ(d.Y, 4.0f);
-    ASSERT_FLOAT_EQ(d.Z, 1.0f);
+    ASSERT_FLOAT_EQ(d.GetX(), 5.0f);
+    ASSERT_FLOAT_EQ(d.GetY(), 4.0f);
+    ASSERT_FLOAT_EQ(d.GetZ(), 1.0f);
 }
 
 /**
@@ -63,22 +63,25 @@ TEST(Point, Construction)
 TEST(Point, Independence)
 {
     Geometry::Point a(0.0f, 4.0f, 7.0f);
-    Geometry::Point b(5.0f, 0.0f, 2.0f);
+    Geometry::Point b = a;
 
-    ASSERT_FLOAT_EQ(a.X, 0.0f);
-    ASSERT_FLOAT_EQ(a.Y, 4.0f);
-    ASSERT_FLOAT_EQ(a.Z, 7.0f);
+    ASSERT_FLOAT_EQ(a.GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(a.GetY(), 4.0f);
+    ASSERT_FLOAT_EQ(a.GetZ(), 7.0f);
+    ASSERT_FLOAT_EQ(b.GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(b.GetY(), 4.0f);
+    ASSERT_FLOAT_EQ(b.GetZ(), 7.0f);
 
-    a.X = 3.0f;
-    a.Y = 2.0f;
-    a.Z = 5.0f;
+    a.SetX(3.0f);
+    a.SetY(2.0f);
+    a.SetZ(5.0f);
 
-    ASSERT_FLOAT_EQ(a.X, 3.0f);
-    ASSERT_FLOAT_EQ(a.Y, 2.0f);
-    ASSERT_FLOAT_EQ(a.Z, 5.0f);
-    ASSERT_FLOAT_EQ(b.X, 5.0f);
-    ASSERT_FLOAT_EQ(b.Y, 0.0f);
-    ASSERT_FLOAT_EQ(b.Z, 2.0f);
+    ASSERT_FLOAT_EQ(a.GetX(), 3.0f);
+    ASSERT_FLOAT_EQ(a.GetY(), 2.0f);
+    ASSERT_FLOAT_EQ(a.GetZ(), 5.0f);
+    ASSERT_FLOAT_EQ(b.GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(b.GetY(), 4.0f);
+    ASSERT_FLOAT_EQ(b.GetZ(), 7.0f);
 }
 
 /**
@@ -102,9 +105,9 @@ TEST(Point, Distance)
         {
             for (float distance = 0.2f; distance < 2.2f; distance += 0.2f)
             {
-                b.X = distance * sinf(angleY) * cosf(angleZ);
-                b.Y = distance * sinf(angleY) * sinf(angleZ);
-                b.Z = distance * cosf(angleY);
+                b.SetX(distance * sinf(angleY) * cosf(angleZ));
+                b.SetY(distance * sinf(angleY) * sinf(angleZ));
+                b.SetZ(distance * cosf(angleY));
 
                 ASSERT_FLOAT_EQ(b.Distance(a), distance);
                 ASSERT_FLOAT_EQ(a.Distance(b), distance);

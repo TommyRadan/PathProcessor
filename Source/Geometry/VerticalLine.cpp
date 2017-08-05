@@ -43,8 +43,8 @@ namespace Geometry
      * @param p - The Point.
      */
     VerticalLine::VerticalLine(const Point& p) :
-        m_X { p.X },
-        m_Y { p.Y }
+        m_X { p.GetX() },
+        m_Y { p.GetY() }
     {}
 
     /**
@@ -76,7 +76,7 @@ namespace Geometry
      */
     const float VerticalLine::GetDistance(const Point& p) const
     {
-        const Geometry::Point referentPoint(this->GetX(), this->GetY(), p.Z);
+        const Geometry::Point referentPoint(this->GetX(), this->GetY(), p.GetZ());
         return referentPoint.Distance(p);
     }
 }

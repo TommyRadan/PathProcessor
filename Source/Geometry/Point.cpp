@@ -35,9 +35,9 @@ namespace Geometry
      * @param z - Z component.
      */
     Point::Point(const float x, const float y, const float z) :
-            X{ x },
-            Y{ y },
-            Z{ z }
+            m_X { x },
+            m_Y { y },
+            m_Z { z }
     {}
 
     /**
@@ -49,10 +49,70 @@ namespace Geometry
      */
     const float Point::Distance(const Point& p) const
     {
-        const float dx = this->X - p.X;
-        const float dy = this->Y - p.Y;
-        const float dz = this->Z - p.Z;
+        const float dx = m_X - p.m_X;
+        const float dy = m_Y - p.m_Y;
+        const float dz = m_Z - p.m_Z;
 
         return sqrtf(dx * dx + dy * dy + dz * dz);
+    }
+
+    /**
+     * Gets X coordinate.
+     *
+     * @return X coordinate.
+     */
+    const float Point::GetX(void) const
+    {
+        return m_X;
+    }
+
+    /**
+     * Gets Y coordinate.
+     *
+     * @return Y coordinate.
+     */
+    const float Point::GetY(void) const
+    {
+        return m_Y;
+    }
+
+    /**
+     * Gets Z coordinate.
+     *
+     * @return Z coordinate.
+     */
+    const float Point::GetZ(void) const
+    {
+        return m_Z;
+    }
+
+    /**
+     * Sets X coordinate.
+     *
+     * @param x - X coordinate.
+     */
+    void Point::SetX(const float x)
+    {
+        m_X = x;
+    }
+
+    /**
+     * Sets Y coordinate.
+     *
+     * @param y - Y coordinate.
+     */
+    void Point::SetY(const float y)
+    {
+        m_Y = y;
+    }
+
+    /**
+     * Sets Z coordinate.
+     *
+     * @param z - Z coordinate.
+     */
+    void Point::SetZ(const float z)
+    {
+        m_Z = z;
     }
 }

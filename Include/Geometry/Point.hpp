@@ -35,7 +35,17 @@ namespace Geometry
 
         const float Distance(const Point& v) const;
 
-        // Data
-        float X, Y, Z;
+        const float GetX(void) const;
+        const float GetY(void) const;
+        const float GetZ(void) const;
+
+        void SetX(const float x);
+        void SetY(const float y);
+        void SetZ(const float z);
+
+    private:
+        float m_X;
+        float m_Y;
+        float m_Z;
     };
 }
