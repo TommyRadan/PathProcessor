@@ -14,7 +14,8 @@ set(SOURCE_FILES
         Source/Controller/Settings.cpp
         Source/Geometry/Point.cpp
         Source/Geometry/VerticalLine.cpp
-        Source/Geometry/Triangle.cpp)
+        Source/Geometry/Triangle.cpp
+        Source/Geometry/Mesh.cpp)
 
 add_executable(PathProcessing
         Source/Controller/main.cpp
@@ -41,6 +42,7 @@ add_executable(UnitTest
         Test/VerticalLineTest.cpp
         Test/TriangleTest.cpp
         Test/SettingsTest.cpp
+        Test/MeshTest.cpp
         ${SOURCE_FILES})
 
 find_package (Threads)
