@@ -35,7 +35,7 @@ namespace Geometry
     struct Mesh
     {
         void AddTriangle(const Triangle& triangle);
-        const std::vector<Triangle> GetData(void) const;
+        const std::vector<Triangle> GetData() const;
 
     private:
         std::vector<Triangle> m_Triangles;

@@ -31,7 +31,7 @@ static Settings* settingsInstance = nullptr;
  *
  * @return Returns pointer to system-wide unique Settings pointer.
  */
-Settings* Settings::GetInstance(void)
+Settings* Settings::GetInstance()
 {
     if (settingsInstance == nullptr)
     {
@@ -43,7 +43,7 @@ Settings* Settings::GetInstance(void)
 /**
  * Singleton ReleaseInstance method for releasing the Settings class.
  */
-void Settings::ReleaseInstance(void)
+void Settings::ReleaseInstance()
 {
     if (settingsInstance != nullptr)
     {
@@ -55,7 +55,7 @@ void Settings::ReleaseInstance(void)
 /**
  * Default constructor for the Settings class.
  */
-Settings::Settings(void)
+Settings::Settings()
 {
     /*
      * TODO: Add setting of default application settings.

@@ -30,14 +30,14 @@
  */
 class Settings
 {
-    Settings(void);
+    Settings();
     Settings(Settings&) = delete;
     Settings& operator=(Settings&) = delete;
-    ~Settings(void) = default;
+    ~Settings() = default;
 
 public:
-    static Settings* GetInstance(void);
-    static void ReleaseInstance(void);
+    static Settings* GetInstance();
+    static void ReleaseInstance();
 
     /*
      * TODO: Add settings getters and setters.

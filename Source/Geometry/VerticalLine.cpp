@@ -52,7 +52,7 @@ namespace Geometry
      *
      * @return X coordinate.
      */
-    const float VerticalLine::GetX(void) const
+    const float VerticalLine::GetX() const
     {
         return m_X;
     }
@@ -62,7 +62,7 @@ namespace Geometry
      *
      * @return Y coordinate.
      */
-    const float VerticalLine::GetY(void) const
+    const float VerticalLine::GetY() const
     {
         return m_Y;
     }

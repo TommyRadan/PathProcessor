@@ -61,7 +61,7 @@ namespace Geometry
      *
      * @return X coordinate.
      */
-    const float Point::GetX(void) const
+    const float Point::GetX() const
     {
         return m_X;
     }
@@ -71,7 +71,7 @@ namespace Geometry
      *
      * @return Y coordinate.
      */
-    const float Point::GetY(void) const
+    const float Point::GetY() const
     {
         return m_Y;
     }
@@ -81,7 +81,7 @@ namespace Geometry
      *
      * @return Z coordinate.
      */
-    const float Point::GetZ(void) const
+    const float Point::GetZ() const
     {
         return m_Z;
     }

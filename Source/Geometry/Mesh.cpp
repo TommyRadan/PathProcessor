@@ -41,7 +41,7 @@ namespace Geometry
      *
      * @return Vector of Triangles.
      */
-    const std::vector<Triangle> Mesh::GetData(void) const
+    const std::vector<Triangle> Mesh::GetData() const
     {
         return m_Triangles;
     }

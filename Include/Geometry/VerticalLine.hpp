@@ -36,8 +36,8 @@ namespace Geometry
         VerticalLine(const float x, const float y);
         explicit VerticalLine(const Point& p);
 
-        const float GetX(void) const;
-        const float GetY(void) const;
+        const float GetX() const;
+        const float GetY() const;
 
         const float GetDistance(const Point& p) const;
 
