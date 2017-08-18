@@ -22,7 +22,7 @@
  *
  */
 
-#include <stdlib.h>
+#include <cstdlib>
 
 /**
  * Application entry point.
