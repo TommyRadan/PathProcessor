@@ -24,7 +24,6 @@
 
 #include <Controller/StlLoader.hpp>
 #include <string>
-#include <iostream>
 
 namespace Controller
 {

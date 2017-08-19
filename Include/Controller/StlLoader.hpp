@@ -25,6 +25,7 @@
 #pragma once
 
 #include <Geometry/Mesh.hpp>
+#include <string>
 
 namespace Controller
 {
