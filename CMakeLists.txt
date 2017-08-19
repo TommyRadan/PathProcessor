@@ -1,17 +1,25 @@
 cmake_minimum_required(VERSION 3.2)
 
+project(PathProcessing)
+set(CMAKE_CXX_STANDARD 11)
+
 ###################################################################
 # Application Main Build
 ###################################################################
 
-project(PathProcessing)
-
-set(CMAKE_CXX_STANDARD 11)
-
 include_directories(Include/)
+
+set(INCLUDE_FILES
+        Include/Controller/Settings.hpp
+        Include/Controller/StlLoader.hpp
+        Include/Geometry/Point.hpp
+        Include/Geometry/VerticalLine.hpp
+        Include/Geometry/Triangle.hpp
+        Include/Geometry/Mesh.hpp)
 
 set(SOURCE_FILES
         Source/Controller/Settings.cpp
+        Source/Controller/StlLoader.cpp
         Source/Geometry/Point.cpp
         Source/Geometry/VerticalLine.cpp
         Source/Geometry/Triangle.cpp
@@ -19,7 +27,8 @@ set(SOURCE_FILES
 
 add_executable(PathProcessing
         Source/Controller/main.cpp
-        ${SOURCE_FILES})
+        ${SOURCE_FILES}
+        ${INCLUDE_FILES})
 
 ###################################################################
 # Application Tests
@@ -43,15 +52,14 @@ add_executable(UnitTest
         Test/TriangleTest.cpp
         Test/SettingsTest.cpp
         Test/MeshTest.cpp
-        ${SOURCE_FILES})
+        Test/StlLoaderTest.cpp
+        ${SOURCE_FILES}
+        ${INCLUDE_FILES})
 
 find_package (Threads)
 add_dependencies(UnitTest gtest)
 include_directories(${source_dir}/googletest/include)
-target_link_libraries(UnitTest ${binary_dir}/googlemock/gtest/libgtest.a)
-target_link_libraries(UnitTest ${binary_dir}/googlemock/gtest/libgtest_main.a)
-target_link_libraries(UnitTest ${CMAKE_THREAD_LIBS_INIT})
-
-enable_testing()
-add_test(NAME UnitTest
-         COMMAND runUnitTests)
+target_link_libraries(UnitTest
+        ${binary_dir}/googlemock/gtest/libgtest.a
+        ${binary_dir}/googlemock/gtest/libgtest_main.a
+        ${CMAKE_THREAD_LIBS_INIT})
