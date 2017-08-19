@@ -55,6 +55,12 @@ TEST(Point, Construction)
     ASSERT_FLOAT_EQ(d.GetX(), 5.0f);
     ASSERT_FLOAT_EQ(d.GetY(), 4.0f);
     ASSERT_FLOAT_EQ(d.GetZ(), 1.0f);
+
+    // Test default constructor
+    Geometry::Point e;
+    ASSERT_FLOAT_EQ(e.GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(e.GetY(), 0.0f);
+    ASSERT_FLOAT_EQ(e.GetZ(), 0.0f);
 }
 
 /**

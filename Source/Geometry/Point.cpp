@@ -28,16 +28,25 @@
 namespace Geometry
 {
     /**
+     * Default constructor.
+     */
+    Point::Point() :
+        m_X { 0.0f },
+        m_Y { 0.0f },
+        m_Z { 0.0f }
+    {}
+
+    /**
      * Class constructor.
      *
      * @param x - X component.
      * @param y - Y component.
      * @param z - Z component.
      */
-    Point::Point(const float x, const float y, const float z) :
-            m_X { x },
-            m_Y { y },
-            m_Z { z }
+    Point::Point(float x, float y, float z) :
+        m_X { x },
+        m_Y { y },
+        m_Z { z }
     {}
 
     /**
@@ -91,7 +100,7 @@ namespace Geometry
      *
      * @param x - X coordinate.
      */
-    void Point::SetX(const float x)
+    void Point::SetX(float x)
     {
         m_X = x;
     }
@@ -101,7 +110,7 @@ namespace Geometry
      *
      * @param y - Y coordinate.
      */
-    void Point::SetY(const float y)
+    void Point::SetY(float y)
     {
         m_Y = y;
     }
@@ -111,7 +120,7 @@ namespace Geometry
      *
      * @param z - Z coordinate.
      */
-    void Point::SetZ(const float z)
+    void Point::SetZ(float z)
     {
         m_Z = z;
     }

@@ -31,7 +31,8 @@ namespace Geometry
      */
     struct Point
     {
-        Point(const float x, const float y, const float z);
+        Point();
+        Point(float x, float y, float z);
 
         const float Distance(const Point& v) const;
 
@@ -39,9 +40,9 @@ namespace Geometry
         const float GetY() const;
         const float GetZ() const;
 
-        void SetX(const float x);
-        void SetY(const float y);
-        void SetZ(const float z);
+        void SetX(float x);
+        void SetY(float y);
+        void SetZ(float z);
 
     private:
         float m_X;
