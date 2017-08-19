@@ -26,6 +26,9 @@
 
 #include <Geometry/VerticalLine.hpp>
 
+/**
+ * This test case tests construction of the VerticalLine.
+ */
 TEST(VerticalLine, Construction)
 {
     Geometry::VerticalLine floatLine(5.0f, 2.0f);
@@ -40,6 +43,9 @@ TEST(VerticalLine, Construction)
     ASSERT_FLOAT_EQ(pointLine.GetY(), 2.0f);
 }
 
+/**
+ * This test case tests calculating the distance between two VerticalLines.
+ */
 TEST(VerticalLine, Distance)
 {
     Geometry::VerticalLine line(1.0f, 1.0f);

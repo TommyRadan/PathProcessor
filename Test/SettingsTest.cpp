@@ -26,6 +26,9 @@
 
 #include <Controller/Settings.hpp>
 
+/**
+ * This test case tests Settings class construction.
+ */
 TEST(Settings, Construction)
 {
     Settings* settings = Settings::GetInstance();
