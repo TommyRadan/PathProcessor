@@ -23,12 +23,35 @@
  */
 
 #include <Controller/StlLoader.hpp>
-#include <string>
+#include <sstream>
+#include <exception>
 
 namespace Controller
 {
     /**
-     * This function constructs a triangle from three lines of STL file.
+     * This function constructs a Point from a line of STL file.
+     *
+     * @param line - The line.
+     *
+     * @return A Point which was constructed.
+     */
+    static Geometry::Point ConstructPoint(const std::string& line)
+    {
+        std::istringstream stream(line);
+        char control;
+        float coordinates[3];
+        stream >> control >> coordinates[0] >> coordinates[1] >> coordinates[2];
+
+        if (control != 'v')
+        {
+            throw std::invalid_argument("Point construction failed! Input: \"" + line + "\"");
+        }
+
+        return {coordinates[0], coordinates[1], coordinates[2]};
+    }
+
+    /**
+     * This function constructs a Triangle from three lines of STL file.
      *
      * @param line1 - First line.
      * @param line2 - Second line.
@@ -40,11 +63,13 @@ namespace Controller
                                                 const std::string& line2,
                                                 const std::string& line3)
     {
-        /*
-         * TODO: Add line parsing.
-         */
+        Geometry::Triangle result;
 
-        return {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+        result.SetA(ConstructPoint(line1));
+        result.SetB(ConstructPoint(line2));
+        result.SetC(ConstructPoint(line3));
+
+        return result;
     }
 
     /**
@@ -60,7 +85,9 @@ namespace Controller
 
         if (stlFile.size() % 3 != 0)
         {
-            return mesh;
+            std::string message("Wrong number of lines provided! Num of lines: ");
+            std::string numOfLines = std::to_string(stlFile.size());
+            throw std::invalid_argument(message + numOfLines);
         }
 
         for (int i = 0; i < stlFile.size();)
