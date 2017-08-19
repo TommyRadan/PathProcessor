@@ -26,6 +26,19 @@
 
 #include <Geometry/Triangle.hpp>
 
-/*
- * TODO: Add tests when triangle gets its functionality.
- */
+TEST(Triangle, Construction)
+{
+    Geometry::Triangle defaultTriangle;
+
+    ASSERT_FLOAT_EQ(defaultTriangle.GetA().GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(defaultTriangle.GetA().GetY(), 0.0f);
+    ASSERT_FLOAT_EQ(defaultTriangle.GetA().GetZ(), 0.0f);
+
+    ASSERT_FLOAT_EQ(defaultTriangle.GetB().GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(defaultTriangle.GetB().GetY(), 0.0f);
+    ASSERT_FLOAT_EQ(defaultTriangle.GetB().GetZ(), 0.0f);
+
+    ASSERT_FLOAT_EQ(defaultTriangle.GetC().GetX(), 0.0f);
+    ASSERT_FLOAT_EQ(defaultTriangle.GetC().GetY(), 0.0f);
+    ASSERT_FLOAT_EQ(defaultTriangle.GetC().GetZ(), 0.0f);
+}

@@ -38,4 +38,64 @@ namespace Geometry
         m_B { b },
         m_C { c }
     {}
+
+    /**
+     * Getter for Point A.
+     *
+     * @return Point A.
+     */
+    const Point Triangle::GetA() const
+    {
+        return m_A;
+    }
+
+    /**
+     * Getter for Point B.
+     *
+     * @return Point B.
+     */
+    const Point Triangle::GetB() const
+    {
+        return m_B;
+    }
+
+    /**
+     * Getter for Point C.
+     *
+     * @return Point C.
+     */
+    const Point Triangle::GetC() const
+    {
+        return m_C;
+    }
+
+    /**
+     * Setter for Point A.
+     *
+     * @return Point A.
+     */
+    void Triangle::SetA(Point a)
+    {
+        m_A = a;
+    }
+
+    /**
+     * Setter for Point B.
+     *
+     * @return Point B.
+     */
+    void Triangle::SetB(Point b)
+    {
+        m_B = b;
+    }
+
+    /**
+     * Setter for Point C.
+     *
+     * @return Point C.
+     */
+    void Triangle::SetC(Point c)
+    {
+        m_C = c;
+    }
 }

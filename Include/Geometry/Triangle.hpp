@@ -33,11 +33,20 @@ namespace Geometry
      */
     struct Triangle
     {
+        Triangle() = default;
         Triangle(const Point& a, const Point& b, const Point& c);
 
+        const Point GetA() const;
+        const Point GetB() const;
+        const Point GetC() const;
+
+        void SetA(Point a);
+        void SetB(Point b);
+        void SetC(Point c);
+
     private:
-        const Point m_A;
-        const Point m_B;
-        const Point m_C;
+        Point m_A;
+        Point m_B;
+        Point m_C;
     };
 }
