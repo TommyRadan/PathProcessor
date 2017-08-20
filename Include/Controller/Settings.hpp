@@ -43,12 +43,22 @@ namespace Controller
 
         const std::string& GetInputFileName() const;
         const std::string& GetOutputFileName() const;
+        const float GetWorkingAreaX() const;
+        const float GetWorkingAreaY() const;
+        const float GetWorkingAreaZ() const;
 
         void SetInputFileName(const std::string& fileName);
         void SetOutputFileName(const std::string& fileName);
+        void SetWorkingAreaX(const float x);
+        void SetWorkingAreaY(const float y);
+        void SetWorkingAreaZ(const float z);
 
     private:
         std::string m_InputFileName;
         std::string m_OutputFileName;
+
+        float m_WorkingAreaX;
+        float m_WorkingAreaY;
+        float m_WorkingAreaZ;
     };
 }

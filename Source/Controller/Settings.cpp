@@ -95,11 +95,75 @@ namespace Controller
     }
 
     /**
+     * Getter for working area X.
+     *
+     * @return Working area X.
+     */
+    const float Settings::GetWorkingAreaX() const
+    {
+        return m_WorkingAreaX;
+    }
+
+    /**
+     * Setter for working area X.
+     *
+     * @param x - X coordinate of the working area.
+     */
+    void Settings::SetWorkingAreaX(const float x)
+    {
+        m_WorkingAreaX = x;
+    }
+
+    /**
+     * Getter for working area Y.
+     *
+     * @return Working area Y.
+     */
+    const float Settings::GetWorkingAreaY() const
+    {
+        return m_WorkingAreaY;
+    }
+
+    /**
+     * Setter for working area Y.
+     *
+     * @param y - Y coordinate of the working area.
+     */
+    void Settings::SetWorkingAreaY(const float y)
+    {
+        m_WorkingAreaY = y;
+    }
+
+    /**
+     * Getter for working area Z.
+     *
+     * @return Working area Z.
+     */
+    const float Settings::GetWorkingAreaZ() const
+    {
+        return m_WorkingAreaZ;
+    }
+
+    /**
+     * Setter for working area Z.
+     *
+     * @param z - Z coordinate of the working area.
+     */
+    void Settings::SetWorkingAreaZ(const float z)
+    {
+        m_WorkingAreaZ = z;
+    }
+
+    /**
      * Default constructor for the Settings class.
      */
     Settings::Settings()
     {
         m_InputFileName = "input.stl";
         m_OutputFileName = "output.gcode";
+
+        m_WorkingAreaX = 2.5f;
+        m_WorkingAreaY = 0.5f;
+        m_WorkingAreaZ = 1.0f;
     }
 }

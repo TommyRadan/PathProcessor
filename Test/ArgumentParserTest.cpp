@@ -42,7 +42,7 @@ TEST(ArgumentParser, EmptyInput)
             nullptr
     };
 
-    EXPECT_TRUE(Controller::ParseArguments(1, args));
+    ASSERT_TRUE(Controller::ParseArguments(1, args));
 
     EXPECT_STREQ(defaultInput.c_str(), settings->GetInputFileName().c_str());
     EXPECT_STREQ(defaultOutput.c_str(), settings->GetOutputFileName().c_str());
@@ -66,10 +66,37 @@ TEST(ArgumentParser, InputAndOutput)
             nullptr
     };
 
-    EXPECT_TRUE(Controller::ParseArguments(5, args));
+    ASSERT_TRUE(Controller::ParseArguments(5, args));
 
     EXPECT_STREQ("testingInput.txt", settings->GetInputFileName().c_str());
     EXPECT_STREQ("testingOutput.txt", settings->GetOutputFileName().c_str());
+
+    settings->ReleaseInstance();
+}
+
+/**
+ * This test case tests inputting the working area.
+ */
+TEST(ArgumentParser, WorkingArea)
+{
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+
+    char* args[] = {
+            (char*)"AppName",
+            (char*)"-wax",
+            (char*)"5.4",
+            (char*)"-way",
+            (char*)"0.4",
+            (char*)"--working-area-z",
+            (char*)"-3.4",
+            nullptr
+    };
+
+    ASSERT_TRUE(Controller::ParseArguments(7, args));
+
+    EXPECT_FLOAT_EQ(settings->GetWorkingAreaX(), 5.4);
+    EXPECT_FLOAT_EQ(settings->GetWorkingAreaY(), 0.4);
+    EXPECT_FLOAT_EQ(settings->GetWorkingAreaZ(),-3.4);
 
     settings->ReleaseInstance();
 }
@@ -90,7 +117,7 @@ TEST(ArgumentParser, NegativeTest)
             nullptr
     };
 
-    EXPECT_FALSE(Controller::ParseArguments(5, args));
+    ASSERT_FALSE(Controller::ParseArguments(5, args));
 
     settings->ReleaseInstance();
 }

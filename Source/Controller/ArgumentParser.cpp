@@ -46,8 +46,11 @@ namespace Controller
     {
 #ifndef UNDER_TEST
         std::cout << "PathProcessor - Lightweight STL to G-Code converter" << std::endl << std::endl;
-        std::cout << "  --input -i       - STL file input" << std::endl;
-        std::cout << "  --output -o      - G-code file output" << std::endl;
+        std::cout << "  --input -i                - STL file input" << std::endl;
+        std::cout << "  --output -o               - G-code file output" << std::endl;
+        std::cout << "  --working-area-x -wax     - Tool working area X coordinate" << std::endl;
+        std::cout << "  --working-area-y -way     - Tool working area Y coordinate" << std::endl;
+        std::cout << "  --working-area-z -waz     - Tool working area Z coordinate" << std::endl;
 #endif
     }
 
@@ -72,6 +75,24 @@ namespace Controller
         if(arg.key == "--output" || arg.key == "-o")
         {
             settings->SetOutputFileName(arg.value);
+            return true;
+        }
+
+        if(arg.key == "--working-area-x" || arg.key == "-wax")
+        {
+            settings->SetWorkingAreaX(std::stof(arg.value));
+            return true;
+        }
+
+        if(arg.key == "--working-area-y" || arg.key == "-way")
+        {
+            settings->SetWorkingAreaY(std::stof(arg.value));
+            return true;
+        }
+
+        if(arg.key == "--working-area-z" || arg.key == "-waz")
+        {
+            settings->SetWorkingAreaZ(std::stof(arg.value));
             return true;
         }
 

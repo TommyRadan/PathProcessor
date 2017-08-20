@@ -45,9 +45,9 @@ namespace GCode
             std::ostringstream stream(line);
 
             stream << "G1 ";
-            stream << "X" << std::fixed << std::setprecision(1) << point.GetX() << " ";
-            stream << "Y" << std::fixed << std::setprecision(1) << point.GetY() << " ";
-            stream << "Z" << std::fixed << std::setprecision(1) << point.GetZ();
+            stream << "X" << std::fixed << std::setprecision(4) << point.GetX() << " ";
+            stream << "Y" << std::fixed << std::setprecision(4) << point.GetY() << " ";
+            stream << "Z" << std::fixed << std::setprecision(4) << point.GetZ();
 
             lines.emplace_back(stream.str());
         }

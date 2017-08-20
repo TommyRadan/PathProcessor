@@ -44,12 +44,12 @@ TEST(GCodeLoader, OnePointPath)
     Geometry::Path path;
     std::vector<std::string> file;
 
-    path.GetData().emplace_back(Geometry::Point{5.3f, 2.3f, 0.2f});
+    path.GetData().emplace_back(Geometry::Point{5.3932f, 2.3843f, 0.2012f});
 
     file = GCode::PathToGCode(path);
 
     ASSERT_EQ(file.size(), 1);
-    ASSERT_STREQ(file[0].c_str(), "G1 X5.3 Y2.3 Z0.2");
+    ASSERT_STREQ(file[0].c_str(), "G1 X5.3932 Y2.3843 Z0.2012");
 }
 
 TEST(GCodeLoader, TwoPointsPath)
@@ -57,12 +57,12 @@ TEST(GCodeLoader, TwoPointsPath)
     Geometry::Path path;
     std::vector<std::string> file;
 
-    path.GetData().emplace_back(Geometry::Point{5.3f, 2.3f, 0.2f});
-    path.GetData().emplace_back(Geometry::Point{-3.4f, 0.0f, 34.9f});
+    path.GetData().emplace_back(Geometry::Point{5.3326f, 2.3123f, 0.2748f});
+    path.GetData().emplace_back(Geometry::Point{-3.4542f, 0.0000f, 34.9234f});
 
     file = GCode::PathToGCode(path);
 
     ASSERT_EQ(file.size(), 2);
-    ASSERT_STREQ(file[0].c_str(), "G1 X5.3 Y2.3 Z0.2");
-    ASSERT_STREQ(file[1].c_str(), "G1 X-3.4 Y0.0 Z34.9");
+    ASSERT_STREQ(file[0].c_str(), "G1 X5.3326 Y2.3123 Z0.2748");
+    ASSERT_STREQ(file[1].c_str(), "G1 X-3.4542 Y0.0000 Z34.9234");
 }
