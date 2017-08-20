@@ -27,6 +27,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
+#include <Controller/Settings.hpp>
 
 namespace STL
 {
@@ -75,15 +76,18 @@ namespace STL
      *
      * @return Vector of strings containing valid lines.
      */
-    std::vector<std::string> StlFileRead(const std::string& fileName)
+    std::vector<std::string> StlFileRead()
     {
-        std::ifstream file(fileName);
+        Controller::Settings* settings = Controller::Settings::GetInstance();
+        const std::string& inputFileName = settings->GetOutputFileName();
+
+        std::ifstream file(inputFileName);
         std::vector<std::string> result;
 
         if (!file.is_open())
         {
             std::string message("Could not open a file: ");
-            throw std::invalid_argument(message + fileName);
+            throw std::invalid_argument(message + inputFileName);
         }
 
         while (file.good())

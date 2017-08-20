@@ -29,5 +29,5 @@
 
 namespace STL
 {
-    std::vector<std::string> StlFileRead(const std::string& fileName);
+    std::vector<std::string> StlFileRead();
 }

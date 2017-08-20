@@ -25,6 +25,7 @@
 #include <G-Code/GCodeFileWriter.hpp>
 #include <fstream>
 #include <stdexcept>
+#include <Controller/Settings.hpp>
 
 namespace GCode
 {
@@ -34,14 +35,17 @@ namespace GCode
      * @param fileName - Name of the file.
      * @param lines - Vector of lines to output.
      */
-    void GCodeFileWrite(const std::string& fileName, const std::vector<std::string>& lines)
+    void GCodeFileWrite(const std::vector<std::string>& lines)
     {
-        std::ofstream file(fileName);
+        Controller::Settings* settings = Controller::Settings::GetInstance();
+        const std::string& outputFileName = settings->GetOutputFileName();
+
+        std::ofstream file(outputFileName);
 
         if (!file.is_open())
         {
             std::string message("Can not open file for writing: ");
-            throw std::invalid_argument(message + fileName);
+            throw std::invalid_argument(message + outputFileName);
         }
 
         for (auto& line : lines)

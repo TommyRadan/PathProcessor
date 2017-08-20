@@ -46,8 +46,6 @@
  */
 int main(int argc, char** argv)
 {
-    Controller::Settings* settings = Controller::Settings::GetInstance();
-
     if(!Controller::ParseArguments(argc, argv))
     {
         return EXIT_FAILURE;
@@ -55,22 +53,19 @@ int main(int argc, char** argv)
 
     try
     {
-        const std::string& input = settings->GetInputFileName();
-        const std::string& output = settings->GetOutputFileName();
-
-        Geometry::Mesh inputMesh = STL::StlToMesh(STL::StlFileRead(input));
+        Geometry::Mesh mesh = STL::StlToMesh(STL::StlFileRead());
         Geometry::Path path;
 
         /*
          * TODO: Process the path and mesh.
          */
 
-        GCode::GCodeFileWrite(output, GCode::PathToGCode(path));
+        GCode::GCodeFileWrite(GCode::PathToGCode(path));
     }
     catch (const std::exception& e)
     {
 #ifndef UNDER_TEST
-        std::string message("The application fails with a message: "); // \"" + e.what() + "\"");
+        std::string message("The application fails with a message: ");
         std::string reason = e.what();
         std::cout << message << "\"" << reason << "\"" << std::endl;
 #endif

@@ -30,5 +30,5 @@
 
 namespace GCode
 {
-    void GCodeFileWrite(const std::string& fileName, const std::vector<std::string>& lines);
+    void GCodeFileWrite(const std::vector<std::string>& lines);
 }
