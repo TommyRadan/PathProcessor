@@ -22,27 +22,36 @@
  *
  */
 
-#include <Geometry/Path.hpp>
+#include <G-Code/GCodeLoader.hpp>
+#include <sstream>
+#include <iomanip>
 
-namespace Geometry
+namespace GCode
 {
     /**
-     * Default constructor.
-     */
-    Path::Path()
-    {
-        /*
-         * TODO: Make default path form.
-         */
-    }
-
-    /**
-     * Method that fetches data stored in the Path.
+     * This function transforms Path into vector of g-code lines.
      *
-     * @return Vector of Points.
+     * @param path - The Path.
+     *
+     * @return Vector of g-code lines.
      */
-    std::vector<Point>& Path::GetData()
+    std::vector<std::string> PathToGCode(Geometry::Path path)
     {
-        return m_Points;
+        std::vector<std::string> lines;
+
+        for (auto& point : path.GetData())
+        {
+            std::string line;
+            std::ostringstream stream(line);
+
+            stream << "G1 ";
+            stream << "X" << std::fixed << std::setprecision(1) << point.GetX() << " ";
+            stream << "Y" << std::fixed << std::setprecision(1) << point.GetY() << " ";
+            stream << "Z" << std::fixed << std::setprecision(1) << point.GetZ();
+
+            lines.emplace_back(stream.str());
+        }
+
+        return lines;
     }
 }

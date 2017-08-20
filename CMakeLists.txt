@@ -14,6 +14,7 @@ set(INCLUDE_FILES
         Include/Controller/ArgumentParser.hpp
         Include/STL/StlLoader.hpp
         Include/STL/StlFileReader.hpp
+        Include/G-Code/GCodeLoader.hpp
         Include/Geometry/Point.hpp
         Include/Geometry/VerticalLine.hpp
         Include/Geometry/Triangle.hpp
@@ -25,6 +26,7 @@ set(SOURCE_FILES
         Source/Controller/ArgumentParser.cpp
         Source/STL/StlLoader.cpp
         Source/STL/StlFileReader.cpp
+        Source/G-Code/GCodeLoader.cpp
         Source/Geometry/Point.cpp
         Source/Geometry/VerticalLine.cpp
         Source/Geometry/Triangle.cpp
@@ -61,6 +63,7 @@ add_executable(UnitTest
         Test/StlLoaderTest.cpp
         Test/ArgumentParserTest.cpp
         Test/PathTest.cpp
+        Test/GCodeLoaderTest.cpp
         ${SOURCE_FILES}
         ${INCLUDE_FILES})
 

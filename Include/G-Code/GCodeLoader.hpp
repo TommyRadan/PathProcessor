@@ -22,27 +22,13 @@
  *
  */
 
+#pragma once
+
 #include <Geometry/Path.hpp>
+#include <string>
+#include <vector>
 
-namespace Geometry
+namespace GCode
 {
-    /**
-     * Default constructor.
-     */
-    Path::Path()
-    {
-        /*
-         * TODO: Make default path form.
-         */
-    }
-
-    /**
-     * Method that fetches data stored in the Path.
-     *
-     * @return Vector of Points.
-     */
-    std::vector<Point>& Path::GetData()
-    {
-        return m_Points;
-    }
+    std::vector<std::string> PathToGCode(Geometry::Path path);
 }

@@ -36,7 +36,7 @@ namespace Geometry
     {
         Path();
 
-        std::vector<Point> GetData() const;
+        std::vector<Point>& GetData();
 
     private:
         std::vector<Point> m_Points;
