@@ -56,9 +56,10 @@ namespace Controller
      *
      * @param arg - One Argument to parse.
      *
-     * @return Returns true if parsing is successful.
+     * @return True - Everything went fine.
+     * @return False - Something went wrong.
      */
-    static bool ParseArgument(const Argument arg)
+    static bool ParseArgument(const Argument& arg)
     {
         Controller::Settings* settings = Controller::Settings::GetInstance();
 
@@ -83,9 +84,10 @@ namespace Controller
      * @param argc - Argument count.
      * @param argv - Argument vector.
      *
-     * @return Returns true if parsing is successful.
+     * @return True - Everything went fine.
+     * @return False - Something went wrong.
      */
-    bool ParseArguments(int argc, char** argv)
+    const bool ParseArguments(int argc, char** argv)
     {
         if ((argc + 1) % 2 != 0)
         {

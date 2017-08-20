@@ -69,7 +69,7 @@ namespace Controller
      *
      * @param fileName - Input File Name.
      */
-    void Settings::SetInputFileName(const std::string &fileName)
+    void Settings::SetInputFileName(const std::string& fileName)
     {
         m_InputFileName = fileName;
     }
@@ -89,7 +89,7 @@ namespace Controller
      *
      * @param fileName - Output File Name.
      */
-    void Settings::SetOutputFileName(const std::string &fileName)
+    void Settings::SetOutputFileName(const std::string& fileName)
     {
         m_OutputFileName = fileName;
     }

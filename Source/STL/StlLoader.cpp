@@ -79,7 +79,7 @@ namespace STL
      *
      * @return Resulting Mesh.
      */
-    Geometry::Mesh StlToMesh(std::vector<std::string> stlFile)
+    Geometry::Mesh StlToMesh(const std::vector<std::string>& stlFile)
     {
         Geometry::Mesh mesh;
 

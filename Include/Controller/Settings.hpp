@@ -37,7 +37,7 @@ namespace Controller
         Settings();
 
     public:
-        static Settings *GetInstance();
+        static Settings* GetInstance();
 
         static void ReleaseInstance();
 

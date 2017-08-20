@@ -26,5 +26,5 @@
 
 namespace Controller
 {
-    bool ParseArguments(int argc, char** argv);
+    const bool ParseArguments(int argc, char** argv);
 }
