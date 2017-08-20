@@ -24,6 +24,16 @@
 
 #include <cstdlib>
 #include <Controller/ArgumentParser.hpp>
+#include <Controller/Settings.hpp>
+
+#include <Geometry/Mesh.hpp>
+
+#include <STL/StlFileReader.hpp>
+#include <STL/StlLoader.hpp>
+
+#include <G-Code/GCodeLoader.hpp>
+#include <G-Code/GCodeFileWriter.hpp>
+#include <iostream>
 
 /**
  * Application entry point.
@@ -36,8 +46,34 @@
  */
 int main(int argc, char** argv)
 {
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+
     if(!Controller::ParseArguments(argc, argv))
     {
+        return EXIT_FAILURE;
+    }
+
+    try
+    {
+        const std::string& input = settings->GetInputFileName();
+        const std::string& output = settings->GetOutputFileName();
+
+        Geometry::Mesh inputMesh = STL::StlToMesh(STL::StlFileRead(input));
+        Geometry::Path path;
+
+        /*
+         * TODO: Process the path and mesh.
+         */
+
+        GCode::GCodeFileWrite(output, GCode::PathToGCode(path));
+    }
+    catch (const std::exception& e)
+    {
+#ifndef UNDER_TEST
+        std::string message("The application fails with a message: "); // \"" + e.what() + "\"");
+        std::string reason = e.what();
+        std::cout << message << "\"" << reason << "\"" << std::endl;
+#endif
         return EXIT_FAILURE;
     }
 
