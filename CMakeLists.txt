@@ -32,7 +32,7 @@ set(SOURCE_FILES
         Source/Geometry/Path.cpp)
 
 add_executable(PathProcessing
-        Source/Controller/main.cpp
+        Source/Controller/EntryPoint.cpp
         ${SOURCE_FILES}
         ${INCLUDE_FILES})
 
