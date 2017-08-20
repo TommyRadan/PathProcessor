@@ -24,10 +24,10 @@
 
 #pragma once
 
+#include <Geometry/Mesh.hpp>
 #include <string>
-#include <vector>
 
-namespace Controller
+namespace STL
 {
-    std::vector<std::string> StlFileRead(const std::string& fileName);
+    Geometry::Mesh StlToMesh(std::vector<std::string> stlFile);
 }

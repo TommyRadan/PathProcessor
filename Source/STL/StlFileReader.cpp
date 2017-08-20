@@ -22,13 +22,13 @@
  *
  */
 
-#include <Controller/StlFileReader.hpp>
+#include <STL/StlFileReader.hpp>
 
 #include <fstream>
 #include <stdexcept>
 #include <sstream>
 
-namespace Controller
+namespace STL
 {
     /**
      * This functions counts words in one line.

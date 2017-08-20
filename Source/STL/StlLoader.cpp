@@ -22,11 +22,11 @@
  *
  */
 
-#include <Controller/StlLoader.hpp>
+#include <STL/StlLoader.hpp>
 #include <sstream>
 #include <stdexcept>
 
-namespace Controller
+namespace STL
 {
     /**
      * This function constructs a Point from a line of STL file.

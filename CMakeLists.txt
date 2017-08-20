@@ -11,9 +11,9 @@ include_directories(Include/)
 
 set(INCLUDE_FILES
         Include/Controller/Settings.hpp
-        Include/Controller/StlLoader.hpp
-        Include/Controller/StlFileReader.hpp
         Include/Controller/ArgumentParser.hpp
+        Include/STL/StlLoader.hpp
+        Include/STL/StlFileReader.hpp
         Include/Geometry/Point.hpp
         Include/Geometry/VerticalLine.hpp
         Include/Geometry/Triangle.hpp
@@ -22,9 +22,9 @@ set(INCLUDE_FILES
 
 set(SOURCE_FILES
         Source/Controller/Settings.cpp
-        Source/Controller/StlLoader.cpp
-        Source/Controller/StlFileReader.cpp
         Source/Controller/ArgumentParser.cpp
+        Source/STL/StlLoader.cpp
+        Source/STL/StlFileReader.cpp
         Source/Geometry/Point.cpp
         Source/Geometry/VerticalLine.cpp
         Source/Geometry/Triangle.cpp
