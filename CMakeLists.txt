@@ -20,7 +20,8 @@ set(INCLUDE_FILES
         Include/Geometry/VerticalLine.hpp
         Include/Geometry/Triangle.hpp
         Include/Geometry/Mesh.hpp
-        Include/Geometry/Path.hpp)
+        Include/Geometry/Path.hpp
+        Include/Geometry/Cone.hpp)
 
 set(SOURCE_FILES
         Source/Controller/Settings.cpp
@@ -33,7 +34,8 @@ set(SOURCE_FILES
         Source/Geometry/VerticalLine.cpp
         Source/Geometry/Triangle.cpp
         Source/Geometry/Mesh.cpp
-        Source/Geometry/Path.cpp)
+        Source/Geometry/Path.cpp
+        Source/Geometry/Cone.cpp)
 
 add_executable(PathProcessing
         Source/Controller/EntryPoint.cpp
@@ -66,6 +68,7 @@ add_executable(UnitTest
         Test/ArgumentParserTest.cpp
         Test/PathTest.cpp
         Test/GCodeLoaderTest.cpp
+        Test/ConeTest.cpp
         ${SOURCE_FILES}
         ${INCLUDE_FILES})
 
