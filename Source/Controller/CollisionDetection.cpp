@@ -58,9 +58,10 @@ namespace Controller
         const float deltaZ { point.GetZ() - cone.GetPosition().GetZ() };
 
         const float deltaXY { sqrtf(powf(deltaX, 2.0f) + powf(deltaY, 2.0f)) };
-        const float coneToPointAngle { atanf(deltaZ / deltaXY) };
+        const float coneToPointAngleRadians { atanf(deltaZ / deltaXY) };
+        const float coneToPointAngleDegrees = coneToPointAngleRadians * (180.0f / float(M_PI));
 
-        return (coneToPointAngle > cone.GetAngle());
+        return (coneToPointAngleDegrees > 90.0f - cone.GetAngle());
     }
 
     /**

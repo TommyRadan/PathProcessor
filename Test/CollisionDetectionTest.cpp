@@ -31,7 +31,7 @@
  */
 TEST(CollisionDetection, BasicPositive)
 {
-    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 3.14f/4, 1.0f);
+    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 45.0f, 1.0f);
 
     Geometry::Point point1 {0.0f, 0.1f, 0.2f};
     Geometry::Point point2 {0.0f, 3.0f, 0.1f};
@@ -50,7 +50,7 @@ TEST(CollisionDetection, BasicPositive)
  */
 TEST(CollisionDetection, BasicPositive2)
 {
-    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 3.14f/4, 1.0f);
+    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 45.0f, 1.0f);
 
     Geometry::Point point1 {0.1f, 0.1f, 0.0f};
     Geometry::Point point2 {0.1f, 0.0f, 0.0f};
@@ -69,11 +69,68 @@ TEST(CollisionDetection, BasicPositive2)
  */
 TEST(CollisionDetection, BasicNegative)
 {
-    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 3.14f/4, 1.0f);
+    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 45.0f, 1.0f);
 
     Geometry::Point point1 {0.1f, 0.1f, 0.0f};
     Geometry::Point point2 {0.1f, 0.0f, 0.0f};
     Geometry::Point point3 {0.0f, 0.3f, 0.2f};
+
+    Geometry::Triangle triangle { point1, point2, point3 };
+
+    Geometry::Mesh mesh;
+    mesh.AddTriangle(triangle);
+
+    ASSERT_FALSE(Controller::IsInCollision(cone, mesh));
+}
+
+/**
+ * This test case tests basic collision detection.
+ */
+TEST(CollisionDetection, BasicNegativeWithSmallAngle)
+{
+    Geometry::Cone cone({0.0f, 0.0f, 0.0f}, 1.0f, 1.0f);
+
+    Geometry::Point point1 {0.1f, 0.1f, 0.0f};
+    Geometry::Point point2 {0.1f, 0.0f, 0.0f};
+    Geometry::Point point3 {0.0f, 0.3f, 0.2f};
+
+    Geometry::Triangle triangle { point1, point2, point3 };
+
+    Geometry::Mesh mesh;
+    mesh.AddTriangle(triangle);
+
+    ASSERT_FALSE(Controller::IsInCollision(cone, mesh));
+}
+
+/**
+ * This test case tests basic collision detection.
+ */
+TEST(CollisionDetection, OutOfCenterPositive)
+{
+    Geometry::Cone cone({1.0f, 1.0f, 1.0f}, 45.0f, 1.0f);
+
+    Geometry::Point point1 {1.1f, 1.1f, 1.0f};
+    Geometry::Point point2 {1.1f, 1.0f, 1.0f};
+    Geometry::Point point3 {1.0f, 1.1f, 1.4f};
+
+    Geometry::Triangle triangle { point1, point2, point3 };
+
+    Geometry::Mesh mesh;
+    mesh.AddTriangle(triangle);
+
+    ASSERT_TRUE(Controller::IsInCollision(cone, mesh));
+}
+
+/**
+ * This test case tests basic collision detection.
+ */
+TEST(CollisionDetection, OutOfCenterNegative)
+{
+    Geometry::Cone cone({1.0f, 1.0f, 1.0f}, 45.0f, 1.0f);
+
+    Geometry::Point point1 {1.1f, 1.1f, 1.0f};
+    Geometry::Point point2 {1.1f, 1.0f, 1.0f};
+    Geometry::Point point3 {1.0f, 1.3f, 1.2f};
 
     Geometry::Triangle triangle { point1, point2, point3 };
 

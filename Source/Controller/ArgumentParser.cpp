@@ -59,6 +59,8 @@ namespace Controller
         std::cout << "  --subdivision-x       -sdx     - Tool subdivision X                25" << std::endl;
         std::cout << "  --subdivision-y       -sdy     - Tool subdivision Y                5" << std::endl;
         std::cout << "  --subdivision-z       -sdz     - Tool subdivision Z                10" << std::endl;
+        std::cout << "  --radius              -r       - Spindle radius                    0.01" << std::endl;
+        std::cout << "  --angle               -a       - Spindle angle                     30" << std::endl;
         std::cout << std::endl;
 #endif
     }
@@ -120,6 +122,18 @@ namespace Controller
         if(arg.key == "--subdivision-z" || arg.key == "-sdz")
         {
             settings->SetSubdivisionZ(std::stoi(arg.value));
+            return true;
+        }
+
+        if(arg.key == "--radius" || arg.key == "-r")
+        {
+            settings->SetSpindleRadius(std::stof(arg.value));
+            return true;
+        }
+
+        if(arg.key == "--angle" || arg.key == "-a")
+        {
+            settings->SetSpindleAngle(std::stof(arg.value));
             return true;
         }
 

@@ -215,6 +215,46 @@ namespace Controller
     }
 
     /**
+     * Getter for spindle radius.
+     *
+     * @return Spindle radius.
+     */
+    const float Settings::GetSpindleRadius() const
+    {
+        return m_SpindleRadius;
+    }
+
+    /**
+     * Setter for spindle radius.
+     *
+     * @param radius - Spindle radius.
+     */
+    void Settings::SetSpindleRadius(float radius)
+    {
+        m_SpindleRadius = radius;
+    }
+
+    /**
+     * Getter for spindle angle.
+     *
+     * @return Spindle angle.
+     */
+    const float Settings::GetSpindleAngle() const
+    {
+        return m_SpindleAngle;
+    }
+
+    /**
+     * Setter for spindle angle.
+     *
+     * @param angle - Spindle angle.
+     */
+    void Settings::SetSpindleAngle(float angle)
+    {
+        m_SpindleAngle = angle;
+    }
+
+    /**
      * Default constructor for the Settings class.
      */
     Settings::Settings()
@@ -229,5 +269,8 @@ namespace Controller
         m_SubdivisionX = 25;
         m_SubdivisionY = 5;
         m_SubdivisionZ = 10;
+
+        m_SpindleRadius = 0.01f;
+        m_SpindleAngle = 30.0f;
     }
 }

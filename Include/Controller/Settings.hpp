@@ -49,6 +49,8 @@ namespace Controller
         const int GetSubdivisionX() const;
         const int GetSubdivisionY() const;
         const int GetSubdivisionZ() const;
+        const float GetSpindleRadius() const;
+        const float GetSpindleAngle() const;
 
         void SetInputFileName(const std::string& fileName);
         void SetOutputFileName(const std::string& fileName);
@@ -58,7 +60,8 @@ namespace Controller
         void SetSubdivisionX(int x);
         void SetSubdivisionY(int y);
         void SetSubdivisionZ(int z);
-
+        void SetSpindleRadius(float radius);
+        void SetSpindleAngle(float angle);
 
     private:
         std::string m_InputFileName;
@@ -71,5 +74,8 @@ namespace Controller
         int m_SubdivisionX;
         int m_SubdivisionY;
         int m_SubdivisionZ;
+
+        float m_SpindleRadius;
+        float m_SpindleAngle;
     };
 }

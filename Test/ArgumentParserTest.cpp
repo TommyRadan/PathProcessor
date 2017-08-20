@@ -129,6 +129,30 @@ TEST(ArgumentParser, Subdivision)
 }
 
 /**
+ * This test case tests inputting spindle radius and angle.
+ */
+TEST(ArgumentParser, RadiusAndAngle)
+{
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+
+    char* args[] = {
+            (char*)"AppName",
+            (char*)"--radius",
+            (char*)"0.05",
+            (char*)"--angle",
+            (char*)"25",
+            nullptr
+    };
+
+    ASSERT_TRUE(Controller::ParseArguments(5, args));
+
+    EXPECT_FLOAT_EQ(settings->GetSpindleRadius(), 0.05f);
+    EXPECT_FLOAT_EQ(settings->GetSpindleAngle(), 25.0f);
+
+    settings->ReleaseInstance();
+}
+
+/**
  * This test case test parsing failure.
  */
 TEST(ArgumentParser, NegativeTest)
