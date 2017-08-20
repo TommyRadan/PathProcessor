@@ -46,12 +46,19 @@ namespace Controller
         const float GetWorkingAreaX() const;
         const float GetWorkingAreaY() const;
         const float GetWorkingAreaZ() const;
+        const int GetSubdivisionX() const;
+        const int GetSubdivisionY() const;
+        const int GetSubdivisionZ() const;
 
         void SetInputFileName(const std::string& fileName);
         void SetOutputFileName(const std::string& fileName);
-        void SetWorkingAreaX(const float x);
-        void SetWorkingAreaY(const float y);
-        void SetWorkingAreaZ(const float z);
+        void SetWorkingAreaX(float x);
+        void SetWorkingAreaY(float y);
+        void SetWorkingAreaZ(float z);
+        void SetSubdivisionX(int x);
+        void SetSubdivisionY(int y);
+        void SetSubdivisionZ(int z);
+
 
     private:
         std::string m_InputFileName;
@@ -60,5 +67,9 @@ namespace Controller
         float m_WorkingAreaX;
         float m_WorkingAreaY;
         float m_WorkingAreaZ;
+
+        int m_SubdivisionX;
+        int m_SubdivisionY;
+        int m_SubdivisionZ;
     };
 }

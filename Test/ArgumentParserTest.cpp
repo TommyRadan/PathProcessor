@@ -102,6 +102,33 @@ TEST(ArgumentParser, WorkingArea)
 }
 
 /**
+ * This test case tests inputting the subdivision.
+ */
+TEST(ArgumentParser, Subdivision)
+{
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+
+    char* args[] = {
+            (char*)"AppName",
+            (char*)"--subdivision-x",
+            (char*)"23",
+            (char*)"-sdy",
+            (char*)"12",
+            (char*)"-sdz",
+            (char*)"4",
+            nullptr
+    };
+
+    ASSERT_TRUE(Controller::ParseArguments(7, args));
+
+    EXPECT_EQ(settings->GetSubdivisionX(), 23);
+    EXPECT_EQ(settings->GetSubdivisionY(), 12);
+    EXPECT_EQ(settings->GetSubdivisionZ(),  4);
+
+    settings->ReleaseInstance();
+}
+
+/**
  * This test case test parsing failure.
  */
 TEST(ArgumentParser, NegativeTest)

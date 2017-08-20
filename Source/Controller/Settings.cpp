@@ -109,7 +109,7 @@ namespace Controller
      *
      * @param x - X coordinate of the working area.
      */
-    void Settings::SetWorkingAreaX(const float x)
+    void Settings::SetWorkingAreaX(float x)
     {
         m_WorkingAreaX = x;
     }
@@ -129,7 +129,7 @@ namespace Controller
      *
      * @param y - Y coordinate of the working area.
      */
-    void Settings::SetWorkingAreaY(const float y)
+    void Settings::SetWorkingAreaY(float y)
     {
         m_WorkingAreaY = y;
     }
@@ -149,9 +149,69 @@ namespace Controller
      *
      * @param z - Z coordinate of the working area.
      */
-    void Settings::SetWorkingAreaZ(const float z)
+    void Settings::SetWorkingAreaZ(float z)
     {
         m_WorkingAreaZ = z;
+    }
+
+    /**
+     * Getter for subdivision X.
+     *
+     * @return Subdivision X.
+     */
+    const int Settings::GetSubdivisionX() const
+    {
+        return m_SubdivisionX;
+    }
+
+    /**
+     * Setter for subdivision X.
+     *
+     * @param x - Subdivision X.
+     */
+    void Settings::SetSubdivisionX(int x)
+    {
+        m_SubdivisionX = x;
+    }
+
+    /**
+     * Getter for subdivision Y.
+     *
+     * @return Subdivision Y.
+     */
+    const int Settings::GetSubdivisionY() const
+    {
+        return m_SubdivisionY;
+    }
+
+    /**
+     * Setter for subdivision Y.
+     *
+     * @param x - Subdivision Y.
+     */
+    void Settings::SetSubdivisionY(int y)
+    {
+        m_SubdivisionY = y;
+    }
+
+    /**
+     * Getter for subdivision Z.
+     *
+     * @return Subdivision Z.
+     */
+    const int Settings::GetSubdivisionZ() const
+    {
+        return m_SubdivisionZ;
+    }
+
+    /**
+     * Setter for subdivision Z.
+     *
+     * @param x - Subdivision Z.
+     */
+    void Settings::SetSubdivisionZ(int z)
+    {
+        m_SubdivisionZ = z;
     }
 
     /**
@@ -165,5 +225,9 @@ namespace Controller
         m_WorkingAreaX = 2.5f;
         m_WorkingAreaY = 0.5f;
         m_WorkingAreaZ = 1.0f;
+
+        m_SubdivisionX = 25;
+        m_SubdivisionY = 5;
+        m_SubdivisionZ = 10;
     }
 }
