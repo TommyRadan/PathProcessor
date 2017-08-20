@@ -25,11 +25,27 @@
 #include <Controller/StlFileReader.hpp>
 
 #include <fstream>
-#include <exception>
+#include <stdexcept>
 #include <sstream>
 
 namespace Controller
 {
+    /**
+     * This functions counts words in one line.
+     *
+     * @param line - The line.
+     *
+     * @return Number of words.
+     */
+    static uint32_t CountWords(const std::string& string)
+    {
+        uint32_t word_count { 0U };
+        std::stringstream ss { string };
+        std::string word;
+        while (ss >> word) ++word_count;
+        return word_count;
+    }
+
     /**
      * This function check if the line is valid.
      *
@@ -49,7 +65,7 @@ namespace Controller
 
         stream << control;
 
-        return (control == "v");
+        return (control == "v") && (CountWords(line) == 4);
     }
 
     /**
