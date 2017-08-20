@@ -12,6 +12,7 @@ include_directories(Include/)
 set(INCLUDE_FILES
         Include/Controller/Settings.hpp
         Include/Controller/ArgumentParser.hpp
+        Include/Controller/CollisionDetection.hpp
         Include/STL/StlLoader.hpp
         Include/STL/StlFileReader.hpp
         Include/G-Code/GCodeLoader.hpp
@@ -26,6 +27,7 @@ set(INCLUDE_FILES
 set(SOURCE_FILES
         Source/Controller/Settings.cpp
         Source/Controller/ArgumentParser.cpp
+        Source/Controller/CollisionDetection.cpp
         Source/STL/StlLoader.cpp
         Source/STL/StlFileReader.cpp
         Source/G-Code/GCodeLoader.cpp
@@ -69,6 +71,7 @@ add_executable(UnitTest
         Test/PathTest.cpp
         Test/GCodeLoaderTest.cpp
         Test/ConeTest.cpp
+        Test/CollisionDetectionTest.cpp
         ${SOURCE_FILES}
         ${INCLUDE_FILES})
 
