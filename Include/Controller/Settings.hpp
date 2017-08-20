@@ -24,27 +24,31 @@
 
 #pragma once
 
-/**
- * This global settings class is used for centralized settings managing.
- * Every application setting should be introduced here.
- */
-class Settings
+#include <string>
+
+namespace Controller
 {
-    Settings();
-    Settings(Settings&) = delete;
-    Settings& operator=(Settings&) = delete;
-    ~Settings() = default;
-
-public:
-    static Settings* GetInstance();
-    static void ReleaseInstance();
-
-    /*
-     * TODO: Add settings getters and setters.
+    /**
+     * This global settings class is used for centralized settings managing.
+     * Every application setting should be introduced here.
      */
+    class Settings
+    {
+        Settings();
 
-private:
-    /*
-     * TODO: Add application settings.
-     */
-};
+    public:
+        static Settings *GetInstance();
+
+        static void ReleaseInstance();
+
+        const std::string& GetInputFileName() const;
+        const std::string& GetOutputFileName() const;
+
+        void SetInputFileName(const std::string& fileName);
+        void SetOutputFileName(const std::string& fileName);
+
+    private:
+        std::string m_InputFileName;
+        std::string m_OutputFileName;
+    };
+}

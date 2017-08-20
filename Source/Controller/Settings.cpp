@@ -24,40 +24,82 @@
 
 #include <Controller/Settings.hpp>
 
-static Settings* settingsInstance = nullptr;
+static Controller::Settings* settingsInstance = nullptr;
 
-/**
- * Singleton GetInstance method for Settings class.
- *
- * @return Returns pointer to system-wide unique Settings pointer.
- */
-Settings* Settings::GetInstance()
+namespace Controller
 {
-    if (settingsInstance == nullptr)
-    {
-        settingsInstance = new Settings();
-    }
-    return settingsInstance;
-}
-
-/**
- * Singleton ReleaseInstance method for releasing the Settings class.
- */
-void Settings::ReleaseInstance()
-{
-    if (settingsInstance != nullptr)
-    {
-        delete settingsInstance;
-        settingsInstance = nullptr;
-    }
-}
-
-/**
- * Default constructor for the Settings class.
- */
-Settings::Settings()
-{
-    /*
-     * TODO: Add setting of default application settings.
+    /**
+     * Singleton GetInstance method for Settings class.
+     *
+     * @return Returns pointer to system-wide unique Settings pointer.
      */
+    Settings *Settings::GetInstance()
+    {
+        if (settingsInstance == nullptr)
+        {
+            settingsInstance = new Settings();
+        }
+        return settingsInstance;
+    }
+
+    /**
+     * Singleton ReleaseInstance method for releasing the Settings class.
+     */
+    void Settings::ReleaseInstance()
+    {
+        if (settingsInstance != nullptr)
+        {
+            delete settingsInstance;
+            settingsInstance = nullptr;
+        }
+    }
+
+    /**
+     * Getter for Input File Name.
+     *
+     * @return Input File Name.
+     */
+    const std::string& Settings::GetInputFileName() const
+    {
+        return m_InputFileName;
+    }
+
+    /**
+     * Setter for Input File Name.
+     *
+     * @param fileName - Input File Name.
+     */
+    void Settings::SetInputFileName(const std::string &fileName)
+    {
+        m_InputFileName = fileName;
+    }
+
+    /**
+     * Getter for Output File Name.
+     *
+     * @return Output File Name.
+     */
+    const std::string& Settings::GetOutputFileName() const
+    {
+        return m_OutputFileName;
+    }
+
+    /**
+     * Setter for Output File Name.
+     *
+     * @param fileName - Output File Name.
+     */
+    void Settings::SetOutputFileName(const std::string &fileName)
+    {
+        m_OutputFileName = fileName;
+    }
+
+    /**
+     * Default constructor for the Settings class.
+     */
+    Settings::Settings()
+    {
+        m_InputFileName = "input.stl";
+        m_OutputFileName = "output.gcode";
+    }
 }

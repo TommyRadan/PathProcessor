@@ -22,24 +22,9 @@
  *
  */
 
-#include <cstdlib>
-#include <Controller/ArgumentParser.hpp>
+#pragma once
 
-/**
- * Application entry point.
- *
- * @param argc - count of command line arguments.
- * @param argv - pointer to list of pointers to command line arguments.
- *
- * @return EXIT_SUCCESS - everything went fine.
- * @return EXIT_FAILURE - something went wrong.
- */
-int main(int argc, char** argv)
+namespace Controller
 {
-    if(!Controller::ParseArguments(argc, argv))
-    {
-        return EXIT_FAILURE;
-    }
-
-    return EXIT_SUCCESS;
+    bool ParseArguments(int argc, char** argv);
 }

@@ -13,6 +13,7 @@ set(INCLUDE_FILES
         Include/Controller/Settings.hpp
         Include/Controller/StlLoader.hpp
         Include/Controller/StlFileReader.hpp
+        Include/Controller/ArgumentParser.hpp
         Include/Geometry/Point.hpp
         Include/Geometry/VerticalLine.hpp
         Include/Geometry/Triangle.hpp
@@ -22,6 +23,7 @@ set(SOURCE_FILES
         Source/Controller/Settings.cpp
         Source/Controller/StlLoader.cpp
         Source/Controller/StlFileReader.cpp
+        Source/Controller/ArgumentParser.cpp
         Source/Geometry/Point.cpp
         Source/Geometry/VerticalLine.cpp
         Source/Geometry/Triangle.cpp
@@ -55,8 +57,11 @@ add_executable(UnitTest
         Test/SettingsTest.cpp
         Test/MeshTest.cpp
         Test/StlLoaderTest.cpp
+        Test/ArgumentParserTest.cpp
         ${SOURCE_FILES}
         ${INCLUDE_FILES})
+
+target_compile_definitions(UnitTest PRIVATE -DUNDER_TEST)
 
 find_package (Threads)
 add_dependencies(UnitTest gtest)

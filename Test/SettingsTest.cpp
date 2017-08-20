@@ -31,16 +31,32 @@
  */
 TEST(Settings, Construction)
 {
-    Settings* settings = Settings::GetInstance();
+    Controller::Settings* settings = Controller::Settings::GetInstance();
 
     // Make sure you don't get nullptr
     ASSERT_NE(settings, nullptr);
 
     // Check the stability of singleton creation
-    ASSERT_EQ(settings, Settings::GetInstance());
-    ASSERT_EQ(settings, Settings::GetInstance());
-    ASSERT_EQ(settings, Settings::GetInstance());
-    ASSERT_EQ(settings, Settings::GetInstance());
+    ASSERT_EQ(settings, Controller::Settings::GetInstance());
+    ASSERT_EQ(settings, Controller::Settings::GetInstance());
+    ASSERT_EQ(settings, Controller::Settings::GetInstance());
+    ASSERT_EQ(settings, Controller::Settings::GetInstance());
 
-    Settings::ReleaseInstance();
+    Controller::Settings::ReleaseInstance();
+}
+
+TEST(Settings, GettersAndSetters)
+{
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+
+    // Make sure you don't get nullptr
+    ASSERT_NE(settings, nullptr);
+
+    settings->SetInputFileName("test_input.txt");
+    ASSERT_STREQ(settings->GetInputFileName().c_str(), "test_input.txt");
+
+    settings->SetOutputFileName("test_output.txt");
+    ASSERT_STREQ(settings->GetOutputFileName().c_str(), "test_output.txt");
+
+    Controller::Settings::ReleaseInstance();
 }
