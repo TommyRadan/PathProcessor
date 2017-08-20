@@ -13,6 +13,7 @@ set(INCLUDE_FILES
         Include/Controller/Settings.hpp
         Include/Controller/ArgumentParser.hpp
         Include/Controller/CollisionDetection.hpp
+        Include/Controller/PathProcessing.hpp
         Include/STL/StlLoader.hpp
         Include/STL/StlFileReader.hpp
         Include/G-Code/GCodeLoader.hpp
@@ -28,6 +29,7 @@ set(SOURCE_FILES
         Source/Controller/Settings.cpp
         Source/Controller/ArgumentParser.cpp
         Source/Controller/CollisionDetection.cpp
+        Source/Controller/PathProcessing.cpp
         Source/STL/StlLoader.cpp
         Source/STL/StlFileReader.cpp
         Source/G-Code/GCodeLoader.cpp

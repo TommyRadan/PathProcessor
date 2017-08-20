@@ -27,6 +27,7 @@
 
 #include <Controller/ArgumentParser.hpp>
 #include <Controller/Settings.hpp>
+#include <Controller/PathProcessing.hpp>
 #include <Geometry/Mesh.hpp>
 #include <STL/StlFileReader.hpp>
 #include <STL/StlLoader.hpp>
@@ -63,11 +64,7 @@ int main(int argc, char** argv)
     {
         Geometry::Mesh mesh { STL::StlToMesh(STL::StlFileRead()) };
         Geometry::Path path;
-
-        /*
-         * TODO: Process the path and mesh.
-         */
-
+        Controller::ProcessThePath(path, mesh);
         GCode::GCodeFileWrite(GCode::PathToGCode(path));
     }
     catch (const std::exception& e)
