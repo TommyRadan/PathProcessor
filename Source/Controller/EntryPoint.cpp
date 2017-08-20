@@ -23,17 +23,23 @@
  */
 
 #include <cstdlib>
+#include <iostream>
+
 #include <Controller/ArgumentParser.hpp>
 #include <Controller/Settings.hpp>
-
 #include <Geometry/Mesh.hpp>
-
 #include <STL/StlFileReader.hpp>
 #include <STL/StlLoader.hpp>
-
 #include <G-Code/GCodeLoader.hpp>
 #include <G-Code/GCodeFileWriter.hpp>
-#include <iostream>
+
+/**
+ * This function is called by operating system when the application exits.
+ */
+static void OnApplicationExit()
+{
+    Controller::Settings::ReleaseInstance();
+}
 
 /**
  * Application entry point.
@@ -46,14 +52,16 @@
  */
 int main(int argc, char** argv)
 {
-    if(!Controller::ParseArguments(argc, argv))
+    atexit(OnApplicationExit);
+
+    if (!Controller::ParseArguments(argc, argv))
     {
         return EXIT_FAILURE;
     }
 
     try
     {
-        Geometry::Mesh mesh = STL::StlToMesh(STL::StlFileRead());
+        Geometry::Mesh mesh { STL::StlToMesh(STL::StlFileRead()) };
         Geometry::Path path;
 
         /*
@@ -65,8 +73,8 @@ int main(int argc, char** argv)
     catch (const std::exception& e)
     {
 #ifndef UNDER_TEST
-        std::string message("The application fails with a message: ");
-        std::string reason = e.what();
+        std::string message { "The application fails with a message: " };
+        std::string reason { e.what() };
         std::cout << message << "\"" << reason << "\"" << std::endl;
 #endif
         return EXIT_FAILURE;
