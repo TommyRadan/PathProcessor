@@ -31,10 +31,11 @@
  */
 TEST(Cone, Construction)
 {
-    Geometry::Cone cone({5.0f, 4.0f, 3.0f}, 30.0f);
+    Geometry::Cone cone({5.0f, 4.0f, 3.0f}, 30.0f, 0.05f);
 
     EXPECT_EQ(cone.GetPosition().GetX(), 5.0f);
     EXPECT_EQ(cone.GetPosition().GetY(), 4.0f);
     EXPECT_EQ(cone.GetPosition().GetZ(), 3.0f);
     EXPECT_EQ(cone.GetAngle(), 30.0f);
+    EXPECT_EQ(cone.GetRadius(), 0.05f);
 }

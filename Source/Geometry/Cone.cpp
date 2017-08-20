@@ -29,9 +29,10 @@ namespace Geometry
     /**
      * Default constructor.
      */
-    Cone::Cone(const Point& position, float angle) :
+    Cone::Cone(const Point& position, float angle, float radius) :
         m_Position { position },
-        m_Angle { angle }
+        m_Angle { angle },
+        m_Radius { radius }
     {}
 
     /**
@@ -39,7 +40,7 @@ namespace Geometry
      *
      * @return Position Point.
      */
-    const Point& Cone::GetPosition()
+    const Point& Cone::GetPosition() const
     {
         return m_Position;
     }
@@ -49,8 +50,18 @@ namespace Geometry
      *
      * @return Cone angle.
      */
-    const float Cone::GetAngle()
+    const float Cone::GetAngle() const
     {
         return m_Angle;
+    }
+
+    /**
+     * Getter for Cone radius.
+     *
+     * @return Cone radius.
+     */
+    const float Cone::GetRadius() const
+    {
+        return m_Radius;
     }
 }

@@ -33,13 +33,15 @@ namespace Geometry
      */
     struct Cone
     {
-        explicit Cone(const Point& position, float angle);
+        explicit Cone(const Point& position, float angle, float radius);
 
-        const Point& GetPosition();
-        const float GetAngle();
+        const Point& GetPosition() const;
+        const float GetAngle() const;
+        const float GetRadius() const;
 
     private:
         const Point m_Position;
         const float m_Angle;
+        const float m_Radius;
     };
 }
