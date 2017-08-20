@@ -47,6 +47,9 @@ TEST(GCodeLoader, EmptyPath)
     Controller::Settings::ReleaseInstance();
 }
 
+/**
+ * This test case tests g-code generation from path of one point.
+ */
 TEST(GCodeLoader, OnePointPath)
 {
     Controller::Settings* settings = Controller::Settings::GetInstance();
@@ -67,6 +70,9 @@ TEST(GCodeLoader, OnePointPath)
     Controller::Settings::ReleaseInstance();
 }
 
+/**
+ * This test case tests g-code generation from path of two points.
+ */
 TEST(GCodeLoader, TwoPointsPath)
 {
     Controller::Settings* settings = Controller::Settings::GetInstance();
