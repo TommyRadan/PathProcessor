@@ -25,13 +25,71 @@
 #include <gtest/gtest.h>
 
 #include <Geometry/Path.hpp>
+#include <Controller/Settings.hpp>
 
 /**
- * This test case tests Mesh construction.
+ * This test case tests empty Path construction.
  */
 TEST(Path, Construction)
 {
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+    settings->SetSubdivisionX(0);
+    settings->SetSubdivisionY(0);
+    settings->SetSubdivisionZ(0);
+
     Geometry::Path path;
 
     ASSERT_EQ(path.GetData().size(), 0);
+
+    Controller::Settings::ReleaseInstance();
+}
+
+/**
+ * This test case tests construction of the default path.
+ */
+TEST(Path, DefaultPathConstruction)
+{
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+    settings->SetWorkingAreaX(1.0f);
+    settings->SetWorkingAreaY(1.0f);
+    settings->SetSubdivisionX(3);
+    settings->SetSubdivisionY(3);
+
+    Geometry::Path path;
+
+    ASSERT_EQ(path.GetData().size(), 9);
+
+    for (auto& point : path.GetData())
+    {
+        EXPECT_FLOAT_EQ(point.GetZ(), 0.0f);
+    }
+
+    EXPECT_FLOAT_EQ(path.GetData()[0].GetX(), -0.5f);
+    EXPECT_FLOAT_EQ(path.GetData()[0].GetY(), -0.5f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[1].GetX(), -0.5f);
+    EXPECT_FLOAT_EQ(path.GetData()[1].GetY(),  0.0f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[2].GetX(), -0.5f);
+    EXPECT_FLOAT_EQ(path.GetData()[2].GetY(),  0.5f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[3].GetX(),  0.0f);
+    EXPECT_FLOAT_EQ(path.GetData()[3].GetY(),  0.5f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[4].GetX(),  0.0f);
+    EXPECT_FLOAT_EQ(path.GetData()[4].GetY(),  0.0f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[5].GetX(),  0.0f);
+    EXPECT_FLOAT_EQ(path.GetData()[5].GetY(), -0.5f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[6].GetX(),  0.5f);
+    EXPECT_FLOAT_EQ(path.GetData()[6].GetY(), -0.5f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[7].GetX(),  0.5f);
+    EXPECT_FLOAT_EQ(path.GetData()[7].GetY(),  0.0f);
+
+    EXPECT_FLOAT_EQ(path.GetData()[8].GetX(),  0.5f);
+    EXPECT_FLOAT_EQ(path.GetData()[8].GetY(),  0.5f);
+
+    Controller::Settings::ReleaseInstance();
 }

@@ -25,22 +25,35 @@
 #include <gtest/gtest.h>
 
 #include <G-Code/GCodeLoader.hpp>
+#include <Controller/Settings.hpp>
 
 /**
  * This test case tests how parser behaves when it gets nothing.
  */
 TEST(GCodeLoader, EmptyPath)
 {
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+    settings->SetSubdivisionX(0);
+    settings->SetSubdivisionY(0);
+    settings->SetSubdivisionZ(0);
+
     Geometry::Path path;
     std::vector<std::string> file;
 
     file = GCode::PathToGCode(path);
 
     ASSERT_EQ(file.size(), 0);
+
+    Controller::Settings::ReleaseInstance();
 }
 
 TEST(GCodeLoader, OnePointPath)
 {
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+    settings->SetSubdivisionX(0);
+    settings->SetSubdivisionY(0);
+    settings->SetSubdivisionZ(0);
+
     Geometry::Path path;
     std::vector<std::string> file;
 
@@ -50,10 +63,17 @@ TEST(GCodeLoader, OnePointPath)
 
     ASSERT_EQ(file.size(), 1);
     ASSERT_STREQ(file[0].c_str(), "G1 X5.3932 Y2.3843 Z0.2012");
+
+    Controller::Settings::ReleaseInstance();
 }
 
 TEST(GCodeLoader, TwoPointsPath)
 {
+    Controller::Settings* settings = Controller::Settings::GetInstance();
+    settings->SetSubdivisionX(0);
+    settings->SetSubdivisionY(0);
+    settings->SetSubdivisionZ(0);
+
     Geometry::Path path;
     std::vector<std::string> file;
 
@@ -65,4 +85,6 @@ TEST(GCodeLoader, TwoPointsPath)
     ASSERT_EQ(file.size(), 2);
     ASSERT_STREQ(file[0].c_str(), "G1 X5.3326 Y2.3123 Z0.2748");
     ASSERT_STREQ(file[1].c_str(), "G1 X-3.4542 Y0.0000 Z34.9234");
+
+    Controller::Settings::ReleaseInstance();
 }

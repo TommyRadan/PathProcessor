@@ -23,6 +23,7 @@
  */
 
 #include <Geometry/Path.hpp>
+#include <Controller/Settings.hpp>
 
 namespace Geometry
 {
@@ -31,9 +32,33 @@ namespace Geometry
      */
     Path::Path()
     {
-        /*
-         * TODO: Make default path form.
-         */
+        Controller::Settings* settings = Controller::Settings::GetInstance();
+
+        float wax = settings->GetWorkingAreaX();
+        float way = settings->GetWorkingAreaY();
+        int sdx = settings->GetSubdivisionX();
+        int sdy = settings->GetSubdivisionY();
+        bool yGoingPositive = true;
+
+        for (int i = 0; i < sdx; ++i)
+        {
+            float currX = wax / (sdx - 1) * i - wax / 2;
+
+            for (int j = 0; j < sdy; ++j)
+            {
+                float currY = way / (sdy - 1) * j - way / 2;
+
+                if (!yGoingPositive)
+                {
+                    currY = -currY;
+                }
+
+                m_Points.emplace_back(Point{currX, currY, 0.0f});
+            }
+
+            // Switch the direction
+            yGoingPositive = !yGoingPositive;
+        }
     }
 
     /**
