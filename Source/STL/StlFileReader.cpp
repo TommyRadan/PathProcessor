@@ -56,7 +56,7 @@ namespace STL
      */
     static bool IsValidLine(const std::string& line)
     {
-        std::ostringstream stream(line);
+        std::stringstream stream { line };
         std::string control;
 
         if (line.empty())
@@ -64,7 +64,7 @@ namespace STL
             return false;
         }
 
-        stream << control;
+        stream >> control;
 
         return (control == "v") && (CountWords(line) == 4);
     }
@@ -78,8 +78,8 @@ namespace STL
      */
     std::vector<std::string> StlFileRead()
     {
-        Controller::Settings* settings = Controller::Settings::GetInstance();
-        const std::string& inputFileName = settings->GetOutputFileName();
+        Controller::Settings* settings { Controller::Settings::GetInstance() };
+        const std::string& inputFileName { settings->GetInputFileName() };
 
         std::ifstream file(inputFileName);
         std::vector<std::string> result;
