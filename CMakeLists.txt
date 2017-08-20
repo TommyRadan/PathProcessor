@@ -15,6 +15,7 @@ set(INCLUDE_FILES
         Include/STL/StlLoader.hpp
         Include/STL/StlFileReader.hpp
         Include/G-Code/GCodeLoader.hpp
+        Include/G-Code/GCodeFileWriter.hpp
         Include/Geometry/Point.hpp
         Include/Geometry/VerticalLine.hpp
         Include/Geometry/Triangle.hpp
@@ -27,6 +28,7 @@ set(SOURCE_FILES
         Source/STL/StlLoader.cpp
         Source/STL/StlFileReader.cpp
         Source/G-Code/GCodeLoader.cpp
+        Source/G-Code/GCodeFileWriter.cpp
         Source/Geometry/Point.cpp
         Source/Geometry/VerticalLine.cpp
         Source/Geometry/Triangle.cpp
