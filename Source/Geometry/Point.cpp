@@ -66,6 +66,23 @@ namespace Geometry
     }
 
     /**
+     * Equals operator between two Points.
+     *
+     * @param p - Point to compare to.
+     *
+     * @return True - The Points are the same.
+     * @return False - The Points are different.
+     */
+    bool Point::operator==(const Point& p)
+    {
+        const bool x = (m_X == p.m_X);
+        const bool y = (m_Y == p.m_Y);
+        const bool z = (m_Z == p.m_Z);
+
+        return x && y && z;
+    }
+
+    /**
      * Gets X coordinate.
      *
      * @return X coordinate.

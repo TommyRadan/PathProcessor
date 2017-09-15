@@ -36,6 +36,8 @@ namespace Geometry
 
         const float Distance(const Point& v) const;
 
+        bool operator==(const Point& p);
+
         const float GetX() const;
         const float GetY() const;
         const float GetZ() const;
