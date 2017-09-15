@@ -38,11 +38,11 @@ namespace STL
     static Geometry::Point ConstructPoint(const std::string& line)
     {
         std::istringstream stream(line);
-        char control;
+        std::string control;
         float coordinates[3];
         stream >> control >> coordinates[0] >> coordinates[1] >> coordinates[2];
 
-        if (control != 'v')
+        if (control != "vertex")
         {
             throw std::invalid_argument("Point construction failed! Input: \"" + line + "\"");
         }

@@ -66,7 +66,7 @@ namespace STL
 
         stream >> control;
 
-        return (control == "v") && (CountWords(line) == 4);
+        return (control == "vertex") && (CountWords(line) == 4);
     }
 
     /**

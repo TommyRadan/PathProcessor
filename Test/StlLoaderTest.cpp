@@ -43,8 +43,8 @@ TEST(StlLoader, NotEnoughPoints)
     Geometry::Mesh mesh;
     std::vector<std::string> lines;
 
-    lines.emplace_back("v 5.6 3.9 2.8");
-    lines.emplace_back("v 4.3 6.3 1.0");
+    lines.emplace_back("vertex 0.56E+01 0.39E+01 0.28E+01");
+    lines.emplace_back("vertex 0.43E+01 0.63E+01 0.10E+01");
 
     EXPECT_ANY_THROW(mesh = STL::StlToMesh(lines););
 }
@@ -54,9 +54,9 @@ TEST(StlLoader, InvalidLine)
     Geometry::Mesh mesh;
     std::vector<std::string> lines;
 
-    lines.emplace_back("v 5.6 3.9 2.8");
-    lines.emplace_back("v 4.3 6.3 1.0");
-    lines.emplace_back("y test 6.32 g");
+    lines.emplace_back("vertex 0.56E+01 0.39E+01 0.28E+01");
+    lines.emplace_back("vertex 0.43E+01 0.63E+01 0.10E+01");
+    lines.emplace_back("point test 6.32E0 g");
 
     EXPECT_ANY_THROW(mesh = STL::StlToMesh(lines););
 }
@@ -66,9 +66,9 @@ TEST(StlLoader, BasicOneTriangle)
     Geometry::Mesh mesh;
     std::vector<std::string> lines;
 
-    lines.emplace_back("v 5.6 3.9 2.8");
-    lines.emplace_back("v 4.3 6.3 1.0");
-    lines.emplace_back("v 3.7 2.3 3.9");
+    lines.emplace_back("vertex 0.56E+01 0.39E+01 0.28E+01");
+    lines.emplace_back("vertex 0.43E+01 0.63E+01 0.10E+01");
+    lines.emplace_back("vertex 0.37E+01 0.23E+01 0.39E+01");
 
     mesh = STL::StlToMesh(lines);
 
