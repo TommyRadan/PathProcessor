@@ -33,20 +33,25 @@ namespace Controller
      *
      * @param point - The Point to process.
      * @param mesh - The Mesh to process the Point with.
+     *
+     * @return True - Mesh is defined for the area.
+     * @return False - Mesh is not defined for the area.
      */
-    static void ProcessThePoint(Geometry::Point& point, const Geometry::Mesh& mesh)
+    static bool ProcessThePoint(Geometry::Point& point, const Geometry::Mesh& mesh)
     {
         Controller::Settings* settings = Controller::Settings::GetInstance();
 
         float waz = settings->GetWorkingAreaZ();
         int sdz = settings->GetSubdivisionZ();
+        float radius = settings->GetSpindleRadius();
+        float angle = settings->GetSpindleAngle();
 
         float currX = point.GetX();
         float currY = point.GetY();
 
-        if (!IsInCollision(Geometry::Cone { Geometry::Point { currX, currY, -waz/2 }, 3.14f/4, 0.02f}, mesh))
+        if (!IsInCollision(Geometry::Cone { Geometry::Point { currX, currY, -waz/2 }, angle, radius}, mesh))
         {
-            return;
+            return false;
         }
 
         for (int i = 0; i < sdz; ++i)
@@ -54,7 +59,7 @@ namespace Controller
             const float currZ = waz / (sdz - 1) * i - waz / 2;
             const Geometry::Cone spindle {
                 Geometry::Point { currX, currY, currZ },
-                3.14f/4, 0.02f
+                angle, radius
             };
 
             if (!IsInCollision(spindle, mesh))
@@ -63,6 +68,8 @@ namespace Controller
                 break;
             }
         }
+
+        return true;
     }
 
     /**
@@ -75,7 +82,12 @@ namespace Controller
     {
         for (auto& point : path.GetData())
         {
-            ProcessThePoint(point, mesh);
+            if (!ProcessThePoint(point, mesh))
+            {
+                /*path.GetData().erase(std::find(path.GetData().begin(),
+                                               path.GetData().end(),
+                                               point));*/
+            }
         }
     }
 }
