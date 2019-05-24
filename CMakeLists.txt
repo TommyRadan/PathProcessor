@@ -83,6 +83,6 @@ find_package (Threads)
 add_dependencies(UnitTest gtest)
 include_directories(${source_dir}/googletest/include)
 target_link_libraries(UnitTest
-        ${binary_dir}/googlemock/gtest/libgtest.a
-        ${binary_dir}/googlemock/gtest/libgtest_main.a
+        ${binary_dir}/lib/libgtest.a
+        ${binary_dir}/lib/libgtest_main.a
         ${CMAKE_THREAD_LIBS_INIT})
