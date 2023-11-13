@@ -22,27 +22,17 @@
 
 #pragma once
 
-#include <geometry/point.hpp>
+#include <geometry/mesh.hpp>
+#include <string>
 
-namespace geometry
-{
 /**
- * Class which holds Triangle information.
+ * @brief Converts a file into a mesh geometry.
+ *
+ * This function takes the path to a file and converts it into a mesh object.
+ * The file should be in a format that represents 3D geometry (like STL). The
+ * resulting mesh is used in further processing.
+ *
+ * @param file_name The path to the file to be converted.
+ * @return A mesh object representing the 3D geometry contained in the file.
  */
-struct triangle {
-	triangle() = default;
-
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
-
-	point a;
-	point b;
-	point c;
-};
-} // namespace geometry
+geometry::mesh file_to_mesh(std::string file_name);

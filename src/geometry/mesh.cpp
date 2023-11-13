@@ -20,29 +20,17 @@
  * SOFTWARE.
  */
 
-#pragma once
-
-#include <geometry/point.hpp>
+#include <geometry/mesh.hpp>
 
 namespace geometry
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+void mesh::AddTriangle(const triangle &triangle)
+{
+	m_Triangles.push_back(triangle);
+}
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
-
-	point a;
-	point b;
-	point c;
-};
+const std::vector<triangle> mesh::GetData() const
+{
+	return m_Triangles;
+}
 } // namespace geometry

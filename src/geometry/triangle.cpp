@@ -20,29 +20,14 @@
  * SOFTWARE.
  */
 
-#pragma once
-
-#include <geometry/point.hpp>
+#include <geometry/triangle.hpp>
 
 namespace geometry
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
-
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
-
-	point a;
-	point b;
-	point c;
-};
+triangle::triangle(const point &a, const point &b, const point &c)
+{
+	this->a = a;
+	this->b = b;
+	this->c = c;
+}
 } // namespace geometry

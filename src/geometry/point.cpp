@@ -20,29 +20,38 @@
  * SOFTWARE.
  */
 
-#pragma once
-
+#include <cmath>
 #include <geometry/point.hpp>
 
 namespace geometry
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+point::point() : x{0.0f}, y{0.0f}, z{0.0f}
+{
+}
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
+point::point(float x, float y, float z)
+{
+	this->x = x;
+	this->y = y;
+	this->z = z;
+}
 
-	point a;
-	point b;
-	point c;
-};
+const float point::Distance(const point &p) const
+{
+	const float dx = x - p.x;
+	const float dy = y - p.y;
+	const float dz = z - p.z;
+
+	return sqrtf(dx * dx + dy * dy + dz * dz);
+}
+
+bool point::operator==(const point &p)
+{
+	const bool is_x_same = (x == p.x);
+	const bool is_y_same = (y == p.y);
+	const bool is_z_same = (z == p.z);
+
+	return is_x_same && is_y_same && is_z_same;
+}
+
 } // namespace geometry

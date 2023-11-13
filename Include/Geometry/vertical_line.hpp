@@ -27,22 +27,49 @@
 namespace geometry
 {
 /**
- * Class which holds Triangle information.
+ * Class which holds VerticalLine information.
  */
-struct triangle {
-	triangle() = default;
+struct vertical_line {
+	/**
+	 * This constructor constructs VerticalLine from X and Y coordinates.
+	 *
+	 * @param x - X coordinate.
+	 * @param y - Y coordinate.
+	 */
+	vertical_line(const float x, const float y);
 
 	/**
-	 * This constructor constructs Triangle from three Points.
+	 * This constructor constructs VerticalLine from Point.
 	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
+	 * @param p - The Point.
 	 */
-	triangle(const point &a, const point &b, const point &c);
+	explicit vertical_line(const point &p);
 
-	point a;
-	point b;
-	point c;
+	/**
+	 * X coordinate getter.
+	 *
+	 * @return X coordinate.
+	 */
+	const float GetX() const;
+
+	/**
+	 * Y coordinate getter.
+	 *
+	 * @return Y coordinate.
+	 */
+	const float GetY() const;
+
+	/**
+	 * Gets distance from VerticalLine to Point.
+	 *
+	 * @param p - The Point.
+	 *
+	 * @return Returns float which represents distance.
+	 */
+	const float GetDistance(const point &p) const;
+
+      private:
+	float m_X;
+	float m_Y;
 };
 } // namespace geometry

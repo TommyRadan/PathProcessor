@@ -20,29 +20,39 @@
  * SOFTWARE.
  */
 
-#pragma once
+#include <output.hpp>
 
-#include <geometry/point.hpp>
+#include <fstream>
+#include <iomanip>
+#include <sstream>
+#include <stdexcept>
 
-namespace geometry
+void path_to_file(std::string file_name, geometry::path &path)
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+	std::vector<std::string> lines;
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
+	for (auto &point : path.GetData()) {
+		std::string line;
+		std::ostringstream stream(line);
 
-	point a;
-	point b;
-	point c;
-};
-} // namespace geometry
+		stream << "G1 ";
+		stream << "X" << std::fixed << std::setprecision(4) << point.x << " ";
+		stream << "Y" << std::fixed << std::setprecision(4) << point.y << " ";
+		stream << "Z" << std::fixed << std::setprecision(4) << point.z;
+
+		lines.emplace_back(stream.str());
+	}
+
+	std::ofstream file(file_name);
+
+	if (!file.is_open()) {
+		std::string message("Can not open file for writing: ");
+		throw std::invalid_argument(message + file_name);
+	}
+
+	for (auto &line : lines) {
+		file << line << std::endl;
+	}
+
+	file.close();
+}

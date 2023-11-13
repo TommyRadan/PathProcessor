@@ -20,29 +20,31 @@
  * SOFTWARE.
  */
 
-#pragma once
-
-#include <geometry/point.hpp>
+#include <geometry/vertical_line.hpp>
 
 namespace geometry
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+vertical_line::vertical_line(const float x, const float y) : m_X{x}, m_Y{y}
+{
+}
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
+vertical_line::vertical_line(const point &p) : m_X{p.x}, m_Y{p.y}
+{
+}
 
-	point a;
-	point b;
-	point c;
-};
+const float vertical_line::GetX() const
+{
+	return m_X;
+}
+
+const float vertical_line::GetY() const
+{
+	return m_Y;
+}
+
+const float vertical_line::GetDistance(const point &p) const
+{
+	const geometry::point referentPoint(this->GetX(), this->GetY(), p.z);
+	return referentPoint.Distance(p);
+}
 } // namespace geometry

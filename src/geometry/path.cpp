@@ -20,29 +20,40 @@
  * SOFTWARE.
  */
 
-#pragma once
+#include <geometry/path.hpp>
 
-#include <geometry/point.hpp>
+#include <argp.hpp>
 
 namespace geometry
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+path::path()
+{
+	float wax = argp_get_working_area_x();
+	float way = argp_get_working_area_y();
+	int sdx = argp_get_subdivision_x();
+	int sdy = argp_get_subdivision_y();
+	bool yGoingPositive = true;
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
+	for (int i = 0; i < sdx; ++i) {
+		float currX = wax / (sdx - 1) * i - wax / 2;
 
-	point a;
-	point b;
-	point c;
-};
+		for (int j = 0; j < sdy; ++j) {
+			float currY = way / (sdy - 1) * j - way / 2;
+
+			if (!yGoingPositive) {
+				currY = -currY;
+			}
+
+			m_Points.emplace_back(point{currX, currY, 0.0f});
+		}
+
+		// Switch the direction
+		yGoingPositive = !yGoingPositive;
+	}
+}
+
+std::vector<point> &path::GetData()
+{
+	return m_Points;
+}
 } // namespace geometry

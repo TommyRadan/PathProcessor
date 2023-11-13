@@ -22,27 +22,17 @@
 
 #pragma once
 
-#include <geometry/point.hpp>
+#include <geometry/path.hpp>
+#include <string>
 
-namespace geometry
-{
 /**
- * Class which holds Triangle information.
+ * @brief Saves a geometric path to a file.
+ *
+ * This function takes a geometric path and a file name, and saves the path data
+ * to the specified file. This is used to export the path data in a format
+ * suitable for CNC milling (such as gcode)
+ *
+ * @param file_name The name of the file where the path data will be saved.
+ * @param path The geometric path to be saved.
  */
-struct triangle {
-	triangle() = default;
-
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
-
-	point a;
-	point b;
-	point c;
-};
-} // namespace geometry
+void path_to_file(std::string file_name, geometry::path &path);

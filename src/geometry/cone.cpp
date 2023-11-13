@@ -20,29 +20,27 @@
  * SOFTWARE.
  */
 
-#pragma once
-
-#include <geometry/point.hpp>
+#include <geometry/cone.hpp>
 
 namespace geometry
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+cone::cone(const point &position, float angle, float radius)
+	: m_Position{position}, m_Angle{angle}, m_Radius{radius}
+{
+}
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
+const point &cone::GetPosition() const
+{
+	return m_Position;
+}
 
-	point a;
-	point b;
-	point c;
-};
+const float cone::GetAngle() const
+{
+	return m_Angle;
+}
+
+const float cone::GetRadius() const
+{
+	return m_Radius;
+}
 } // namespace geometry
