@@ -22,27 +22,17 @@
 
 #pragma once
 
-#include <geometry/point.hpp>
+#include <geometry/mesh.hpp>
+#include <geometry/path.hpp>
 
-namespace geometry
-{
 /**
- * Class which holds Triangle information.
+ * @brief Generates a tooling path from a given mesh geometry.
+ *
+ * This function takes a mesh object as input and calculates a path that can be
+ * used for CNC machining. The path represents a series of movements that a tool
+ * head should follow to replicate the mesh geometry.
+ *
+ * @param mesh The mesh geometry from which to generate the path.
+ * @return A path object representing the tooling or printing instructions.
  */
-struct triangle {
-	triangle() = default;
-
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
-
-	point a;
-	point b;
-	point c;
-};
-} // namespace geometry
+geometry::path generate_path(const geometry::mesh &mesh);

@@ -20,29 +20,33 @@
  * SOFTWARE.
  */
 
-#pragma once
+#include <iostream>
+#include <string>
+#include <exception>
 
-#include <geometry/point.hpp>
+#include <argp.hpp>
+#include <generator.hpp>
+#include <input.hpp>
+#include <output.hpp>
 
-namespace geometry
+int main(int argc, char **argv)
 {
-/**
- * Class which holds Triangle information.
- */
-struct triangle {
-	triangle() = default;
+	try {
+		if (!argp_parse(argc, argv)) {
+			return EXIT_SUCCESS;
+		}
 
-	/**
-	 * This constructor constructs Triangle from three Points.
-	 *
-	 * @param a - Point A.
-	 * @param b - Point B.
-	 * @param c - Point C.
-	 */
-	triangle(const point &a, const point &b, const point &c);
+		std::string input_file = argp_get_input_file();
+		std::string output_file = argp_get_output_file();
 
-	point a;
-	point b;
-	point c;
-};
-} // namespace geometry
+		geometry::mesh mesh = file_to_mesh(input_file);
+		geometry::path path = generate_path(mesh);
+
+		path_to_file(output_file, path);
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+		return EXIT_FAILURE;
+	}
+
+	return EXIT_SUCCESS;
+}
