@@ -40,25 +40,25 @@ struct cone {
 	 *
 	 * @return Position Point.
 	 */
-	const point &GetPosition() const;
+	const point &get_position() const;
 
 	/**
 	 * Getter for Cone angle.
 	 *
 	 * @return Cone angle.
 	 */
-	const float GetAngle() const;
+	const float get_angle() const;
 
 	/**
 	 * Getter for Cone radius.
 	 *
 	 * @return Cone radius.
 	 */
-	const float GetRadius() const;
+	const float get_radius() const;
 
       private:
-	const point m_Position;
-	const float m_Angle;
-	const float m_Radius;
+	const point _position;
+	const float _angle;
+	const float _radius;
 };
 } // namespace geometry

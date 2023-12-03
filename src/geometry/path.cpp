@@ -32,7 +32,7 @@ path::path()
 	float way = argp_get_working_area_y();
 	int sdx = argp_get_subdivision_x();
 	int sdy = argp_get_subdivision_y();
-	bool yGoingPositive = true;
+	bool y_going_positive = true;
 
 	for (int i = 0; i < sdx; ++i) {
 		float currX = wax / (sdx - 1) * i - wax / 2;
@@ -40,20 +40,20 @@ path::path()
 		for (int j = 0; j < sdy; ++j) {
 			float currY = way / (sdy - 1) * j - way / 2;
 
-			if (!yGoingPositive) {
+			if (!y_going_positive) {
 				currY = -currY;
 			}
 
-			m_Points.emplace_back(point{currX, currY, 0.0f});
+			_points.emplace_back(point{currX, currY, 0.0f});
 		}
 
 		// Switch the direction
-		yGoingPositive = !yGoingPositive;
+		y_going_positive = !y_going_positive;
 	}
 }
 
-std::vector<point> &path::GetData()
+std::vector<point> &path::get_data()
 {
-	return m_Points;
+	return _points;
 }
 } // namespace geometry

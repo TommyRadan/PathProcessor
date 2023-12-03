@@ -36,7 +36,7 @@ point::point(float x, float y, float z)
 	this->z = z;
 }
 
-const float point::Distance(const point &p) const
+const float point::distance(const point &p) const
 {
 	const float dx = x - p.x;
 	const float dy = y - p.y;

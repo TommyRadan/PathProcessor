@@ -50,14 +50,14 @@ struct vertical_line {
 	 *
 	 * @return X coordinate.
 	 */
-	const float GetX() const;
+	const float get_x() const;
 
 	/**
 	 * Y coordinate getter.
 	 *
 	 * @return Y coordinate.
 	 */
-	const float GetY() const;
+	const float get_y() const;
 
 	/**
 	 * Gets distance from VerticalLine to Point.
@@ -66,10 +66,10 @@ struct vertical_line {
 	 *
 	 * @return Returns float which represents distance.
 	 */
-	const float GetDistance(const point &p) const;
+	const float get_distance(const point &p) const;
 
       private:
-	float m_X;
-	float m_Y;
+	float _x;
+	float _y;
 };
 } // namespace geometry

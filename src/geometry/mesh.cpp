@@ -24,13 +24,13 @@
 
 namespace geometry
 {
-void mesh::AddTriangle(const triangle &triangle)
+void mesh::add_triangle(const triangle &triangle)
 {
-	m_Triangles.push_back(triangle);
+	_triangles.push_back(triangle);
 }
 
-const std::vector<triangle> mesh::GetData() const
+const std::vector<triangle> mesh::get_data() const
 {
-	return m_Triangles;
+	return _triangles;
 }
 } // namespace geometry

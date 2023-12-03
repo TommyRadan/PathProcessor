@@ -41,9 +41,9 @@ struct path {
 	 *
 	 * @return Vector of Points.
 	 */
-	std::vector<point> &GetData();
+	std::vector<point> &get_data();
 
       private:
-	std::vector<point> m_Points;
+	std::vector<point> _points;
 };
 } // namespace geometry

@@ -24,27 +24,27 @@
 
 namespace geometry
 {
-vertical_line::vertical_line(const float x, const float y) : m_X{x}, m_Y{y}
+vertical_line::vertical_line(const float x, const float y) : _x{x}, _y{y}
 {
 }
 
-vertical_line::vertical_line(const point &p) : m_X{p.x}, m_Y{p.y}
+vertical_line::vertical_line(const point &p) : _x{p.x}, _y{p.y}
 {
 }
 
-const float vertical_line::GetX() const
+const float vertical_line::get_x() const
 {
-	return m_X;
+	return _x;
 }
 
-const float vertical_line::GetY() const
+const float vertical_line::get_y() const
 {
-	return m_Y;
+	return _y;
 }
 
-const float vertical_line::GetDistance(const point &p) const
+const float vertical_line::get_distance(const point &p) const
 {
-	const geometry::point referentPoint(this->GetX(), this->GetY(), p.z);
-	return referentPoint.Distance(p);
+	const geometry::point referent_point(this->get_x(), this->get_y(), p.z);
+	return referent_point.distance(p);
 }
 } // namespace geometry
