@@ -30,7 +30,7 @@ echo "Building project in $BUILD_TYPE mode..."
 mkdir -p "$REPO_ROOT/build"
 
 # Run CMake with the specified build type
-cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -B "$REPO_ROOT/build" -S "$REPO_ROOT"
+cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE -B "$REPO_ROOT/build" -S "$REPO_ROOT" -G "Unix Makefiles"
 
 # Compile the project
 make -C "$REPO_ROOT/build"
