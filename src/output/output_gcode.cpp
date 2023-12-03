@@ -31,7 +31,7 @@ void path_to_file(std::string file_name, geometry::path &path)
 {
 	std::vector<std::string> lines;
 
-	for (auto &point : path.GetData()) {
+	for (auto &point : path.get_data()) {
 		std::string line;
 		std::ostringstream stream(line);
 

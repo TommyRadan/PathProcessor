@@ -25,22 +25,22 @@
 namespace geometry
 {
 cone::cone(const point &position, float angle, float radius)
-	: m_Position{position}, m_Angle{angle}, m_Radius{radius}
+	: _position{position}, _angle{angle}, _radius{radius}
 {
 }
 
-const point &cone::GetPosition() const
+const point &cone::get_position() const
 {
-	return m_Position;
+	return _position;
 }
 
-const float cone::GetAngle() const
+const float cone::get_angle() const
 {
-	return m_Angle;
+	return _angle;
 }
 
-const float cone::GetRadius() const
+const float cone::get_radius() const
 {
-	return m_Radius;
+	return _radius;
 }
 } // namespace geometry

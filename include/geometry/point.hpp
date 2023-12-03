@@ -49,7 +49,7 @@ struct point {
 	 *
 	 * @return Distance between Points.
 	 */
-	const float Distance(const point &v) const;
+	const float distance(const point &v) const;
 
 	/**
 	 * Equals operator between two Points.

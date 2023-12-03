@@ -26,8 +26,10 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <cstdint>
+#include <array>
 
-static uint32_t CountWords(const std::string &string)
+static uint32_t get_word_count(const std::string &string)
 {
 	uint32_t word_count{0U};
 	std::stringstream ss{string};
@@ -38,7 +40,7 @@ static uint32_t CountWords(const std::string &string)
 	return word_count;
 }
 
-static bool IsValidLine(const std::string &line)
+static bool is_line_valid(const std::string &line)
 {
 	std::stringstream stream{line};
 	std::string control;
@@ -49,59 +51,10 @@ static bool IsValidLine(const std::string &line)
 
 	stream >> control;
 
-	return (control == "vertex") && (CountWords(line) == 4);
+	return (control == "vertex") && (get_word_count(line) == 4);
 }
 
-static geometry::point ConstructPoint(const std::string &line)
-{
-	std::istringstream stream(line);
-	std::string control;
-	float coordinates[3];
-	stream >> control >> coordinates[0] >> coordinates[1] >> coordinates[2];
-
-	if (control != "vertex") {
-		throw std::invalid_argument("Point construction failed! Input: \"" + line + "\"");
-	}
-
-	return {coordinates[0], coordinates[1], coordinates[2]};
-}
-
-static geometry::triangle ConstructTriangle(const std::string &line1, const std::string &line2,
-					    const std::string &line3)
-{
-	geometry::triangle result;
-
-	result.a = ConstructPoint(line1);
-	result.b = ConstructPoint(line2);
-	result.c = ConstructPoint(line3);
-
-	return result;
-}
-
-static geometry::mesh StlToMesh(const std::vector<std::string> &stlFile)
-{
-	geometry::mesh mesh;
-
-	if (stlFile.size() % 3 != 0) {
-		std::string message("Wrong number of lines provided! Num of lines: ");
-		std::string numOfLines = std::to_string(stlFile.size());
-		throw std::invalid_argument(message + numOfLines);
-	}
-
-	for (int i = 0; i < stlFile.size();) {
-		std::string point[3];
-
-		point[0] = stlFile[i++];
-		point[1] = stlFile[i++];
-		point[2] = stlFile[i++];
-
-		mesh.AddTriangle(ConstructTriangle(point[0], point[1], point[2]));
-	}
-
-	return mesh;
-}
-
-geometry::mesh file_to_mesh(std::string file_name)
+static std::vector<std::string> split_file(std::string file_name)
 {
 	std::ifstream file(file_name);
 	std::vector<std::string> result;
@@ -115,7 +68,7 @@ geometry::mesh file_to_mesh(std::string file_name)
 		std::string line;
 		std::getline(file, line);
 
-		if (!IsValidLine(line)) {
+		if (!is_line_valid(line)) {
 			continue;
 		}
 
@@ -123,6 +76,55 @@ geometry::mesh file_to_mesh(std::string file_name)
 	}
 
 	file.close();
+	return result;
+}
 
-	return StlToMesh(result);
+static geometry::point create_point(const std::string &line)
+{
+	std::istringstream stream(line);
+	std::string control;
+	float coordinates[3];
+	stream >> control >> coordinates[0] >> coordinates[1] >> coordinates[2];
+
+	if (control != "vertex") {
+		throw std::invalid_argument("Point construction failed! Input: \"" + line + "\"");
+	}
+
+	return {coordinates[0], coordinates[1], coordinates[2]};
+}
+
+static geometry::triangle create_triangle(std::array<std::string, 3> lines)
+{
+	geometry::triangle result;
+
+	result.a = create_point(lines[0]);
+	result.b = create_point(lines[1]);
+	result.c = create_point(lines[2]);
+
+	return result;
+}
+
+geometry::mesh file_to_mesh(std::string file_name)
+{
+	std::vector<std::string> stl_file = split_file(file_name);
+	geometry::mesh mesh;
+
+	if (stl_file.size() % 3 != 0) {
+		std::string message("Wrong number of lines provided! Num of lines: ");
+		std::string numOfLines = std::to_string(stl_file.size());
+		throw std::invalid_argument(message + numOfLines);
+	}
+
+	for (int i = 0; i < stl_file.size() - 2; i += 3) {
+		std::array<std::string, 3> lines;
+
+		lines[0] = stl_file[i];
+		lines[1] = stl_file[i + 1];
+		lines[2] = stl_file[i + 2];
+
+		geometry::triangle triangle = create_triangle(lines);
+		mesh.add_triangle(triangle);
+	}
+
+	return mesh;
 }

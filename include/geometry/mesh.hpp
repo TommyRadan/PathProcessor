@@ -36,16 +36,16 @@ struct mesh {
 	 *
 	 * @param triangle - Triangle to add.
 	 */
-	void AddTriangle(const triangle &triangle);
+	void add_triangle(const triangle &triangle);
 
 	/**
 	 * Method that fetches data stored in the Mesh.
 	 *
 	 * @return Vector of Triangles.
 	 */
-	const std::vector<triangle> GetData() const;
+	const std::vector<triangle> get_data() const;
 
       private:
-	std::vector<triangle> m_Triangles;
+	std::vector<triangle> _triangles;
 };
 } // namespace geometry
