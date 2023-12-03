@@ -1,7 +1,8 @@
 # Find clang-format
 find_program(CLANG_FORMAT "clang-format")
 if(NOT CLANG_FORMAT)
-    message(FATAL_ERROR "clang-format not found")
+    message(STATUS "clang-format not found (No style related targets)")
+    return()
 else()
     message(STATUS "Found clang-format: ${CLANG_FORMAT}")
 endif()
